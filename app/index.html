@@ -26,13 +26,36 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view></div>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="#">Putative Orthologous Groups DB</a>
+        <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container-fluid" ng-view></div>
+    <div class="container-fluid">
+    <footer>
+      <div class="row-fluid">
+        <hr>
+        <p class="pull-left">©2012 POGS 2.0 Alice Barkan Lab, Institute of Molecular Biology, University of Oregon. Developers: Michael A Tomcal, Nicholas Stiffler.</p>
+
+      </div>
+    </footer>
+  </div>
+
 
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="components/angular-cookies/angular-cookies.js"></script>
     <script src="components/angular-sanitize/angular-sanitize.js"></script>
     <script src="components/angular-ui/build/angular-ui.min.js"></script>
+    <script src="components/angular-ui-bootstrap/dist/ui-bootstrap-tpls-0.4.0.min.js"></script>
+
 
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>

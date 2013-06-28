@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('pogsUiApp', [])
+angular.module('pogsUiApp', ['ui', 'ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
