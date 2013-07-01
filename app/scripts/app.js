@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('pogsUiApp', ['ui', 'ui.bootstrap', 'ngResource'])
+angular.module('pogsUiApp', ['ui', 'ui.bootstrap', 'ngResource', 'ngSanitize'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

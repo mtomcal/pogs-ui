@@ -1,9 +1,55 @@
 <div ng-controller="PogCtrl">
-  <ul>
-    <li ng-repeat="item in test">{{item}}</li>
-  </ul>
-  <ul>
-    <li ng-repeat="item in pog.locus">{{item.genemodel}}
-    </li>
-  </ul>
-</div>
+<tabset>
+<tab heading="Orthologous Group">
+<center><img ng-show="!loadedGroup" width="25" height="25" src="/images/ajax-loader.gif" /></center>
+<table ng-hide="!loadedGroup" class="members table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Accession / Links</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  </tbody>
+  <tr ng-model="orgdata" ng-repeat="item in orgdata">
+    <td><a target="_blank" href="{{urlmap(item.genemodel)}}">{{item.genemodel}}</a></td>
+    <td>{{item.desc}}</td>
+  </tr>
+  </tbody>
+</table>
+</tab>
+<tab heading="Orthologous Domains">
+<center><img ng-show="!loadedOrtho" width="25" height="25" src="/images/ajax-loader.gif" /></center>
+<table ng-hide="!loadedOrtho" class="domain-maps table table-bordered">
+  <tr>
+    <th>Gene Model</th>
+    <th>Domain Map</th>
+  </tr>
+  <tr ng-model="domains" ng-repeat="(item, value) in domains">
+    <td class="linkify"><a href="{{urlmap(item)}}">{{item}}</a></td>
+    <td>
+      <div ng-bind-html="value[1]"></div>
+      <img src="http://cas-pogs.uoregon.edu{{value[0]}}" id="{{item}}" />
+    </td>
+  </tr>
+</table>
+</tab>
+<tab select="loadBlastDomains()" heading="BLAST Related Domains">
+
+<center><img ng-show="!loadedBlast" width="25" height="25" src="/images/ajax-loader.gif" /></center>
+<table ng-hide="!loadedBlast" class="domain-maps table table-bordered">
+  <tr>
+    <th>Gene Model</th>
+    <th>Domain Map</th>
+  </tr>
+  <tr ng-model="blast_domains" ng-repeat="(item, value) in blast_domains">
+    <td class="linkify"><a href="{{urlmap(item)}}">{{item}}</a></td>
+    <td>
+      <div ng-bind-html="value[1]"></div>
+      <img src="http://cas-pogs.uoregon.edu{{value[0]}}" id="{{item}}" />
+    </td>
+  </tr>
+</table>
+</tab>
+</tabset>
+
+ </div>

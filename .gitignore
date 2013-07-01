@@ -3,4 +3,5 @@ dist
 .tmp
 .sass-cache
 .swp
+.DS_Store
 app/components
