@@ -33,7 +33,7 @@ see http://www.gnu.org/copyleft/lesser.html
 */
 
 
-
+var WZ_Tooltip = function() {
 ////////////////  GLOBAL TOOPTIP CONFIGURATION  /////////////////////
 var ttAbove       = false;        // tooltip above mousepointer? Alternative: true
 var ttBgColor     = "#e6ecff";
@@ -474,3 +474,4 @@ function tt_Init()
 	document.write(htm);
 }
 tt_Init();
+}

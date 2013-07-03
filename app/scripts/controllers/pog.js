@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pogsUiApp')
-  .controller('PogCtrl', function ($scope, $routeParams, Pog, Domains, BlastDomains) {
+  .controller('PogCtrl', function ($scope, $routeParams, Pog, Domains, BlastDomains, Predotar, Targetp, Prednls, Ppdb, Nucpred) {
     $scope.loadedBlast = false;
     $scope.loadedOrtho = false;
     $scope.loadedGroup = false;
@@ -42,6 +42,7 @@ angular.module('pogsUiApp')
 
     $scope.domains = Domains.query({id: $routeParams.id}, function (data) {
       $scope.loadedOrtho = true;
+      WZ_Tooltip();
       return data;
     });
 
@@ -56,4 +57,10 @@ angular.module('pogsUiApp')
         });
       }
     };
+
+    $scope.prednls = Prednls.query({id: $routeParams.id});
+    $scope.nucpred = Nucpred.query({id: $routeParams.id});
+    $scope.predotar = Predotar.query({id: $routeParams.id});
+    $scope.targetp = Targetp.query({id: $routeParams.id});
+    $scope.ppdb = Ppdb.query({id: $routeParams.id});
   });

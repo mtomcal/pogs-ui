@@ -1,4 +1,4 @@
-<div ng-controller="PogCtrl">
+<div class="row-fluid" ng-controller="PogCtrl">
 <tabset>
 <tab heading="Orthologous Group">
 <center><img ng-show="!loadedGroup" width="25" height="25" src="/images/ajax-loader.gif" /></center>
@@ -51,5 +51,81 @@
 </table>
 </tab>
 </tabset>
+
+<div class="row-fluid"></div>
+
+<h3>Experimentally Verified Targets (PPDB)</h3>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Accession</th>
+    <th>Annotation</th>
+    <th>Experimentally Verified Location</th>
+    <th>Reference</th>
+  </tr>
+  <tr ng-repeat="item in ppdb">
+    <td><a href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td>{{item.annotation}}</td>
+    <td>{{item.location}}</td>
+    <td><a target="_blank" href="http://ppdb.tc.cornell.edu/dbsearch/gene.aspx?acc={{item.query_gm}}">Reference</a></td>
+  </tr>
+</table>
+
+<h3>Predicted Targets</h3>
+
+<table class="targeting-1 table table-bordered table-striped">
+  <tr>
+    <th>Accession</th>
+    <th>Prediction Tool</th>
+    <th>Chloroplast</th>
+    <th>Mitochondria</th>
+    <th>Signal Peptide</th>
+    <th>None / Other</th>
+    <th>Prediction</th>
+
+  </tr>
+  <tbody ng-repeat="item in predotar">
+  <tr>
+    <td rowspan="2"><a href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td>Predotar</td>
+    <td>{{item.ctp}}</td>
+    <td>{{item.mtp}}</td>
+    <td>{{item.er}}</td>
+    <td>{{item.none}}</td>
+    <td>{{item.prediction}}</td>
+  </tr>
+  <tr>
+    <td>TargetP</td>
+    <td>{{targetp[$index].ctp}}</td>
+    <td>{{targetp[$index].mtp}}</td>
+    <td>{{targetp[$index].sp}}</td>
+    <td>{{targetp[$index].other}}</td>
+    <td>{{targetp[$index].prediction}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<table class="targeting-2 table table-bordered table-striped">
+  <tr>
+    <th>Accession</th>
+    <th>Prediction Tool</th>
+    <th>Nuclear</th>
+    <th>Prediction</th>
+  </tr>
+  <tbody ng-repeat="item in prednls">
+  <tr>
+    <td rowspan="2"><a href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td>PredictNLS</td>
+    <td>{{item.nls}}</td>
+    <td>{{item.prediction}}</td>
+  </tr>
+  <tr>
+    <td>Nucpred</td>
+    <td>{{nucpred[$index].score}}</td>
+    <td>{{nucpred[$index].prediction}}</td>
+  </tr>
+  </tbody>
+</table>
+
 
  </div>
