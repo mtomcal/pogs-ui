@@ -287,7 +287,7 @@ module.exports = function (grunt) {
     'coffee',
     'compass:dist',
     'useminPrepare',
-    'imagemin',
+    //'imagemin',
     'cssmin',
     'htmlmin',
     'concat',
