@@ -1,0 +1,131 @@
+<div class="row-fluid" ng-controller="PogCtrl">
+<tabset>
+<tab heading="Orthologous Group">
+<center><img ng-show="!loadedGroup" width="25" height="25" src="/images/d3381310.ajax-loader.gif"></center>
+<table ng-hide="!loadedGroup" class="members table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Accession / Links</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  
+  <tr ng-model="orgdata" ng-repeat="item in orgdata">
+    <td><a target="_blank" href="{{urlmap(item.genemodel)}}">{{item.genemodel}}</a></td>
+    <td>{{item.desc}}</td>
+  </tr>
+  
+</table>
+</tab>
+<tab heading="Orthologous Domains">
+<center><img ng-show="!loadedOrtho" width="25" height="25" src="images/ajax-loader.gif"></center>
+<table ng-hide="!loadedOrtho" class="domain-maps table table-bordered">
+  <tr>
+    <th>Gene Model</th>
+    <th>Domain Map</th>
+  </tr>
+  <tr ng-model="domains" ng-repeat="(item, value) in domains">
+    <td class="linkify"><a href="{{urlmap(item)}}">{{item}}</a></td>
+    <td>
+      <div ng-bind-html="value[1]"></div>
+      <img src="http://cas-pogs.uoregon.edu{{value[0]}}" id="{{item}}">
+    </td>
+  </tr>
+</table>
+</tab>
+<tab select="loadBlastDomains()" heading="BLAST Related Domains">
+
+<center><img ng-show="!loadedBlast" width="25" height="25" src="images/ajax-loader.gif"></center>
+<table ng-hide="!loadedBlast" class="domain-maps table table-bordered">
+  <tr>
+    <th>Gene Model</th>
+    <th>Domain Map</th>
+  </tr>
+  <tr ng-model="blast_domains" ng-repeat="(item, value) in blast_domains">
+    <td class="linkify"><a href="{{urlmap(item)}}">{{item}}</a></td>
+    <td>
+      <div ng-bind-html="value[1]"></div>
+      <img src="http://cas-pogs.uoregon.edu{{value[0]}}" id="{{item}}">
+    </td>
+  </tr>
+</table>
+</tab>
+</tabset>
+
+<div class="row-fluid"></div>
+
+<h3>Experimentally Verified Targets (PPDB)</h3>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Accession</th>
+    <th>Annotation</th>
+    <th>Experimentally Verified Location</th>
+    <th>Reference</th>
+  </tr>
+  <tr ng-repeat="item in ppdb">
+    <td><a href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td>{{item.annotation}}</td>
+    <td>{{item.location}}</td>
+    <td><a target="_blank" href="http://ppdb.tc.cornell.edu/dbsearch/gene.aspx?acc={{item.query_gm}}">Reference</a></td>
+  </tr>
+</table>
+
+<h3>Predicted Targets</h3>
+
+<table class="targeting-1 table table-bordered table-striped">
+  <tr>
+    <th>Accession</th>
+    <th>Prediction Tool</th>
+    <th>Chloroplast</th>
+    <th>Mitochondria</th>
+    <th>Signal Peptide</th>
+    <th>None / Other</th>
+    <th>Prediction</th>
+
+  </tr>
+  <tbody ng-repeat="item in predotar">
+  <tr>
+    <td rowspan="2"><a href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td>Predotar</td>
+    <td>{{item.ctp}}</td>
+    <td>{{item.mtp}}</td>
+    <td>{{item.er}}</td>
+    <td>{{item.none}}</td>
+    <td>{{item.prediction}}</td>
+  </tr>
+  <tr>
+    <td>TargetP</td>
+    <td>{{targetp[$index].ctp}}</td>
+    <td>{{targetp[$index].mtp}}</td>
+    <td>{{targetp[$index].sp}}</td>
+    <td>{{targetp[$index].other}}</td>
+    <td>{{targetp[$index].prediction}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<table class="targeting-2 table table-bordered table-striped">
+  <tr>
+    <th>Accession</th>
+    <th>Prediction Tool</th>
+    <th>Nuclear</th>
+    <th>Prediction</th>
+  </tr>
+  <tbody ng-repeat="item in prednls">
+  <tr>
+    <td rowspan="2"><a href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td>PredictNLS</td>
+    <td>{{item.nls}}</td>
+    <td>{{item.prediction}}</td>
+  </tr>
+  <tr>
+    <td>Nucpred</td>
+    <td>{{nucpred[$index].score}}</td>
+    <td>{{nucpred[$index].prediction}}</td>
+  </tr>
+  </tbody>
+</table>
+
+
+ </div>

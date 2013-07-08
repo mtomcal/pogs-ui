@@ -1,0 +1,169 @@
+<div class="row-fluid">
+  <div class="span12">
+    <tabset>
+    <tab heading="Pog Search">
+<h3>Advanced Search By POG</h3>
+<p></p>   
+<p></p> 
+<form action="/#/search/" method="get" accept-charset="utf-8">        <b>Gene Search</b>
+  <br>
+  <input style="width:70%" class="search-box" name="gene" placeholder="Search By Gene ID i.e. GRMZM2G055768" type="text" id="form_gene">    <br>
+  <br>
+  <b>Domain & Keyword Search</b>
+  <br>
+  <input style="width:70%" class="search-box" name="domain" placeholder="Search By Keyword i.e. &#039;ppr&#039; or by InterproID i.e. IPR001117" type="text" id="form_domain">    <br>
+  <br>
+  <b>Transcript ID Search</b>
+  <br>
+  <input style="width:70%" class="search-box" name="tid" placeholder="Search By Gene Transcript ID i.e. GRMZM2G055768_P01" type="text" id="form_tid">    <br>
+  <br>
+  <b>POG Search</b>
+  <br>
+  <input style="width:70%" class="search-box" name="pog" placeholder="Search By POG ID i.e. 5562" type="text" id="form_pog">    <br>
+  <br>
+  <b>By Target Prediction</b>
+  <br>
+  <br>
+  <table class="target-search table table-condensed">
+    <tr>
+      <td>Predotar, TargetP</td>
+      <td>
+        <select name="targetop" id="form_targetop">
+          <option value="" style="text-indent: 0px" selected="selected">None</option>
+          <option value="both" style="text-indent: 0px">Both</option>
+          <option value="either" style="text-indent: 0px">Either</option>
+          <option value="predotar" style="text-indent: 0px">Predotar</option>
+          <option value="targetp" style="text-indent: 0px">TargetP</option>
+      </select>        </td>
+      <td>
+        <select name="location" id="form_location">
+          <option value="" style="text-indent: 0px" selected="selected">None</option>
+          <option value="mitochondria" style="text-indent: 0px">Mitochondria</option>
+          <option value="plastid" style="text-indent: 0px">Plastid</option>
+          <option value="endoret" style="text-indent: 0px">Endoplasmid Reticulum</option>
+          <option value="signal" style="text-indent: 0px">Signal Peptide</option>
+      </select>        </td>
+    </tr>
+    <tr>
+      <td>NucPred, PredictNLS</td>
+      <td>
+        <select name="nucop" id="form_nucop">
+          <option value="" style="text-indent: 0px" selected="selected">None</option>
+          <option value="both" style="text-indent: 0px">Both</option>
+          <option value="either" style="text-indent: 0px">Either</option>
+          <option value="nucpred" style="text-indent: 0px">NucPred</option>
+          <option value="prednls" style="text-indent: 0px">PredictNLS</option>
+      </select>        </td>
+      <td>
+      </td>
+    </tr>
+  </table>
+  <b>By Experimentally Verified Locations</b>
+  <br>
+  <br>
+  <table class="target-search table table-condensed">
+    <tr>
+      <td>PPDB</td>
+      <td>
+        <select name="ppdb" id="form_ppdb">
+          <option value="" style="text-indent: 0px" selected="selected">None</option>
+          <option value="mitochondria" style="text-indent: 0px">Mitochondria</option>
+          <option value="plastid" style="text-indent: 0px">Plastid</option>
+          <option value="nucleus" style="text-indent: 0px">Nucleus</option>
+          <option value="ER" style="text-indent: 0px">Endoplasmid Reticulum</option>
+      </select>      </td>
+    
+  </tr>
+</table>
+<input name="type" value="byPOG" type="hidden" id="form_type">    <input class="form_by_pog btn btn-primary" name="search" value="Search" type="submit" id="form_search">
+    </form>  
+</tab>
+    <tab heading="Gene Search">
+
+    <h3>Advanced Search By Gene</h3>
+    <p></p>
+    <p></p>
+    <form action="http://cas-pogs.uoregon.edu/index.php/pogs/search/" method="get" accept-charset="utf-8">
+<b>Gene Search</b>
+<br>
+<input style="width:70%" class="search-box" name="gene" value="Search By Gene ID i.e. GRMZM2G055768" type="text" id="form_gene">    <br>
+<br>
+<b>Domain Search</b>
+<br>
+<input style="width:70%" class="search-box" name="domain" value="Search By InterproID i.e. IPR001117" type="text" id="form_domain">    <br>
+<br>
+<b>By Target Prediction</b>
+<br>
+<br>
+<table class="target-search table table-condensed">
+  <tr>
+    <td>Predotar, TargetP</td>
+    <td>
+      <select name="targetop" id="form_targetop">
+        <option value="" style="text-indent: 0px" selected="selected">None</option>
+        <option value="both" style="text-indent: 0px">Both</option>
+        <option value="either" style="text-indent: 0px">Either</option>
+        <option value="predotar" style="text-indent: 0px">Predotar</option>
+        <option value="targetp" style="text-indent: 0px">TargetP</option>
+    </select>        </td>
+    <td>
+      <select name="location" id="form_location">
+        <option value="" style="text-indent: 0px" selected="selected">None</option>
+        <option value="mitochondria" style="text-indent: 0px">Mitochondria</option>
+        <option value="plastid" style="text-indent: 0px">Plastid</option>
+        <option value="endoret" style="text-indent: 0px">Endoplasmid Reticulum</option>
+        <option value="signal" style="text-indent: 0px">Signal Peptide</option>
+    </select>        </td>
+  </tr>
+  <tr>
+    <td>NucPred, PredictNLS</td>
+    <td>
+      <select name="nucop" id="form_nucop">
+        <option value="" style="text-indent: 0px" selected="selected">None</option>
+        <option value="both" style="text-indent: 0px">Both</option>
+        <option value="either" style="text-indent: 0px">Either</option>
+        <option value="nucpred" style="text-indent: 0px">NucPred</option>
+        <option value="predictnl" style="text-indent: 0px">PredictNLS</option>
+    </select>        </td>
+    <td>
+    </td>
+  </tr>
+</table>
+<b>By Experimentally Verified Locations</b>
+<br>
+<br>
+<table class="target-search table table-condensed">
+  <tr>
+    <td>PPDB</td>
+    <td>
+      <select name="ppdb" id="form_ppdb">
+        <option value="" style="text-indent: 0px" selected="selected">None</option>
+        <option value="mitochondria" style="text-indent: 0px">Mitochondria</option>
+        <option value="plastid" style="text-indent: 0px">Plastid</option>
+        <option value="nucleus" style="text-indent: 0px">Nucleus</option>
+        <option value="ER" style="text-indent: 0px">Endoplasmid Reticulum</option>
+    </select>      </td>
+  
+</tr>
+    </table>
+
+    <input name="type" value="byGene" type="hidden" id="form_type">    <input class="form_by_gene btn btn-primary" name="search" value="Search" type="submit" id="form_search">
+    </form>
+</tab>
+</tabset>
+</div>
+</div>
+
+
+<div class="row-fluid">
+  <div class="span12">
+<h3>Description</h3>
+<br>
+<p>
+POGs 2.0 Beta, is a relational database designed to facilitate cross-species inferences about gene functions and gene models in plants.  The database integrates data from rice (<i>Orza sativa</i>), maize (<i>Zea mays</i>), <i>Arabidopsis thaliana</i>, and Poplar (<i>Populus trichocarpa</i>) by placing the complete predicted proteomes into "putative orthologous groups" (POGs). POGs were imported from Gramene’s <a href="http://www.gramene.org/info/docs/compara/homology_method.html">ENSEMBL orthology prediction output</a>.
+</p>
+<p>
+Each POG entry includes putative orthologs annotated with gene descriptions imported from species-specific databases, graphical representations of conserved protein domains, phylogenetic trees showing closely-related proteins, intracellular targeting predictions and verified targeting data from <a href="http://ppdb.tc.cornell.edu/">PPDB</a>. The database can be queried by Interpro domain keyword or ID, genemodel or transcript accessions, known or predicted intracellular location, or any combination of the above.
+</p>
+  </div>
+</div>
