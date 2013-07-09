@@ -1,10 +1,13 @@
 'use strict';
 
 angular.module('pogsUiApp')
-  .controller('PogCtrl', function ($scope, $routeParams, Pog, Domains, BlastDomains, Predotar, Targetp, Prednls, Ppdb, Nucpred) {
+  .controller('PogCtrl', function ($scope, $routeParams, Pog, Domains, BlastDomains, Predotar, Targetp, Prednls, Ppdb, Nucpred, Tree) {
+
     $scope.loadedBlast = false;
     $scope.loadedOrtho = false;
     $scope.loadedGroup = false;
+    $scope.loadedTree = false;
+    $scope.genemodels = [];
 
 
     $scope.urlmap = function(genemodel) {
@@ -34,6 +37,7 @@ angular.module('pogsUiApp')
     $scope.pog = Pog.query({id: $routeParams.id}, function (data) {
       _.each(data["locus"], function(profile, id) {
         _.each(profile.organismdatum, function(datum, genemodel) {
+          $scope.genemodels.push(genemodel);
           $scope.orgdata.push(datum);
         });
       });
@@ -49,11 +53,45 @@ angular.module('pogsUiApp')
     $scope.blast_domains = {};
 
     
-    
+  
     $scope.loadBlastDomains = function () {
       if ($scope.loadedBlast == false) {
         $scope.blast_domains = BlastDomains.query({id: $routeParams.id}, function () {
           $scope.loadedBlast = true;
+        });
+      }
+    };
+
+    var processTree = function (tree, cb) {
+      var urlBase = "http://cas-pogs.uoregon.edu/ui/";
+      var $xml = angular.element(tree);
+      $xml.find('branch_length').each(function() {
+        angular.element(this).text('1');
+      });
+      $xml.find('name').each(function() {
+        if (_.include($scope.genemodels, angular.element(this).text())) {
+          var old_value = angular.element(this).text();
+          angular.element(this).text(old_value + "*");
+        } else {
+          var addition = angular.element('<annotation><desc>Click to Search For ' + angular.element(this).text() + ' POG</desc><uri>'+ urlBase +'pogs/search/?tid=' + angular.element(this).text() + '&type=byPOG</uri></annotation>');
+          angular.element(this).parent().append(addition);
+        }
+      });
+      cb($xml[2].outerHTML);
+    }
+
+    $scope.loadTree = function () {
+      if (!$scope.loadedTree) {
+        Tree.query({id: $routeParams.id}, function(tree) {
+          processTree(tree[$routeParams.id], function (tree) {
+            var dataObject = {
+              phyloxml: tree,
+              fileSource: false 
+            }
+            var phylocanvas = new Smits.PhyloCanvas(dataObject,'svgCanvas', 900, 1000);
+            $scope.loadedTree = true;
+
+          });
         });
       }
     };
@@ -63,4 +101,5 @@ angular.module('pogsUiApp')
     $scope.predotar = Predotar.query({id: $routeParams.id});
     $scope.targetp = Targetp.query({id: $routeParams.id});
     $scope.ppdb = Ppdb.query({id: $routeParams.id});
+
   });
