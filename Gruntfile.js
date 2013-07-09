@@ -293,7 +293,7 @@ module.exports = function (grunt) {
     'concat',
     'copy',
     'cdnify',
-    'ngmin',
+    //'ngmin',
     'uglify',
     'rev',
     'usemin'
