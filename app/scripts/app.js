@@ -9,7 +9,11 @@ angular.module('pogsUiApp', ['ui', 'ui.bootstrap', 'ngResource', 'ngSanitize'])
       })
       .when('/pog/:id', {
         templateUrl: 'views/pog.html',
-        controller: 'PogCtrl',
+        controller: 'PogCtrl'
+      })
+      .when('/mart/:id/:type/:dataset', {
+        templateUrl: 'views/mart.html',
+        controller: 'MartCtrl'
       })
       .otherwise({
         redirectTo: '/'

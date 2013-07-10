@@ -1,0 +1,17 @@
+<div class="row-fluid" ng-controller="MartCtrl">
+<button ng-click="back()" class="btn btn-secondary">Back</button>
+<a href="http://cas-pogs.uoregon.edu/dev/index.php/api/{{type}}.json?id={{id}}&dataset={{dataset}}&format=text"><button class="btn btn-secondary">Download</button></a>
+<br />
+<br />
+<center><img ng-show="loader" width="25" height="25" src="images/ajax-loader.gif" /></center>
+<h2 ng-show="loadedFasta">Fasta</h2>
+  <div ng-show="loadedFasta">
+    <pre>
+{{fasta}}
+    </pre>
+  </div>
+  <h2 ng-show="loadedAlign">Alignment</h2>
+  <div ng-show="loadedAlign" ng-bind-html="align.align">
+  </div>
+</div>
+
