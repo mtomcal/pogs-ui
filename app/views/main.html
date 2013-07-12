@@ -5,21 +5,21 @@
 <h3>Advanced Search By POG</h3>
 <p></p>   
 <p></p> 
-<form action="/#/search/" method="get" accept-charset="utf-8">        <b>Gene Search</b>
+  <b>Gene Search</b>
   <br>
-  <input style="width:70%" class="search-box" name="gene" placeholder="Search By Gene ID i.e. GRMZM2G055768" type="text" id="form_gene" />    <br>
+  <input ng-model="gene" placeholder="Search By Gene ID i.e. GRMZM2G055768" type="text"/><br>
   <br>
   <b>Domain & Keyword Search</b>
   <br>
-  <input style="width:70%" class="search-box" name="domain" placeholder="Search By Keyword i.e. &#039;ppr&#039; or by InterproID i.e. IPR001117" type="text" id="form_domain" />    <br>
+  <input ng-model="domain" placeholder="Search By Keyword i.e. &#039;ppr&#039; or by InterproID i.e. IPR001117" type="text" />    <br>
   <br>
   <b>Transcript ID Search</b>
   <br>
-  <input style="width:70%" class="search-box" name="tid" placeholder="Search By Gene Transcript ID i.e. GRMZM2G055768_P01" type="text" id="form_tid" />    <br>
+  <input ng-model="tid" placeholder="Search By Gene Transcript ID i.e. GRMZM2G055768_P01" type="text" /><br>
   <br>
   <b>POG Search</b>
   <br>
-  <input style="width:70%" class="search-box" name="pog" placeholder="Search By POG ID i.e. 5562" type="text" id="form_pog" />    <br>
+  <input ng-model="pog" placeholder="Search By POG ID i.e. 5562" type="text" />    <br>
   <br>
   <b>By Target Prediction</b>
   <br>
@@ -75,15 +75,15 @@
     </td>
   </tr>
 </table>
-<input name="type" value="byPOG" type="hidden" id="form_type" />    <input class="form_by_pog btn btn-primary" name="search" value="Search" type="submit" id="form_search" />
-    </form>  
+<input name="type" value="byPOG" type="hidden" id="form_type" />
+<button ng-click="" class="form_by_pog btn btn-primary" id="form_search">Search</button>
 </tab>
     <tab heading="Gene Search">
 
     <h3>Advanced Search By Gene</h3>
     <p></p>
     <p></p>
-    <form action="http://cas-pogs.uoregon.edu/index.php/pogs/search/" method="get" accept-charset="utf-8">
+    <form action="#/search/" method="get" accept-charset="utf-8">
 <b>Gene Search</b>
 <br>
 <input style="width:70%" class="search-box" name="gene" value="Search By Gene ID i.e. GRMZM2G055768" type="text" id="form_gene" />    <br>
