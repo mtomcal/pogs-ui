@@ -105,6 +105,7 @@ angular.module('pogsUiApp')
         }
         angular.element('#svgCanvas').html("");
         new Smits.PhyloCanvas(dataObject,'svgCanvas',1000,1000);
+        angular.element('#svgCanvas > svg').attr('height', '1100');
       });
     };
 

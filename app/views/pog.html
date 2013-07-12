@@ -12,8 +12,6 @@
 <button type="button" class="btn btn-secondary" ng-click="dataSubmit()">Fetch Data</button>
 <br />
 <br />
-<tabset>
-<tab heading="Orthologous Group">
 <center><img ng-show="!loadedGroup" width="25" height="25" src="images/ajax-loader.gif" /></center>
 <table ng-hide="!loadedGroup" class="members table table-bordered table-striped">
   <thead>
@@ -29,7 +27,7 @@
   </tr>
   </tbody>
 </table>
-</tab>
+<tabset>
 <tab heading="Orthologous Domains">
 <center><img ng-show="!loadedOrtho" width="25" height="25" src="images/ajax-loader.gif" /></center>
 <table ng-hide="!loadedOrtho" class="domain-maps table table-bordered">
@@ -88,7 +86,8 @@
 </table>
 
 <h3>Predicted Targets</h3>
-
+<tabset>
+<tab heading="Subcellular Targeting">
 <table class="targeting-1 table table-bordered table-striped">
   <tr>
     <th>Accession</th>
@@ -120,7 +119,8 @@
   </tr>
   </tbody>
 </table>
-
+</tab>
+<tab heading="Nuclear Targeting">
 <table class="targeting-2 table table-bordered table-striped">
   <tr>
     <th>Accession</th>
@@ -142,6 +142,8 @@
   </tr>
   </tbody>
 </table>
+</tab>
+</tabset>
 
 
  </div>
