@@ -8,6 +8,12 @@ angular.module('pogsUiApp')
     $scope.pogSearch.ppdbTarget = '';
     $scope.pogSearch.pog = '';
 
+    $scope.geneSearch = {};
+    $scope.geneSearch.subCellBool = '';
+    $scope.geneSearch.nuclearBool = '';
+    $scope.geneSearch.ppdbTarget = '';
+    $scope.geneSearch.pog = '';
+
     $scope.pogSearchSubmit = function() {
       Params.clear();
       Params.set({
@@ -24,5 +30,22 @@ angular.module('pogsUiApp')
 
       $location.path('/search');
     }
+    $scope.geneSearchSubmit = function() {
+      Params.clear();
+      Params.set({
+        gene: $scope.geneSearch.gene,
+        tid: $scope.geneSearch.tid,
+        domain: $scope.geneSearch.domain,
+        pog: $scope.geneSearch.pog,
+        type: 'byGene',
+        targetop: $scope.geneSearch.subCellBool,
+        nucop: $scope.geneSearch.nuclearBool,
+        location: $scope.geneSearch.subCellTarget,
+        ppdb: $scope.geneSearch.ppdbTarget,
+      });
+
+      $location.path('/genesearch');
+    }
+
 
   });

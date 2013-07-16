@@ -23,6 +23,22 @@ angular.module('pogsUiApp', ['ui', 'ui.bootstrap', 'ngResource', 'ngSanitize'])
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl',
       })
+      .when('/search/genemodel/:genemodel', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl',
+      })
+      .when('/genesearch', {
+        templateUrl: 'views/genesearch.html',
+        controller: 'SearchCtrl',
+      })
+      .when('/genesearch/:page', {
+        templateUrl: 'views/genesearch.html',
+        controller: 'SearchCtrl',
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl',
+      })
       .otherwise({
         redirectTo: '/'
       });

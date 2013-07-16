@@ -70,7 +70,7 @@ angular.module('pogsUiApp')
     };
 
     var processTree = function (tree, cb) {
-      var urlBase = "http://cas-pogs.uoregon.edu/ui/";
+      var urlBase = "/ui/";
       var $xml = angular.element(tree);
       if (!$scope.loadedGroup) {
         cb(false);
@@ -87,7 +87,7 @@ angular.module('pogsUiApp')
             var old_value = angular.element(this).text();
             angular.element(this).text(old_value + "*");
           } else {
-            var addition = angular.element('<annotation><desc>Click to Search For ' + angular.element(this).text() + ' POG</desc><uri>'+ urlBase +'pogs/search/?tid=' + angular.element(this).text() + '&type=byPOG</uri></annotation>');
+            var addition = angular.element('<annotation><desc>Click to Search For ' + angular.element(this).text() + ' POG</desc><uri>'+ urlBase +'#/search/genemodel/' + angular.element(this).text() + '</uri></annotation>');
             angular.element(this).parent().append(addition);
           }
         }).promise();
