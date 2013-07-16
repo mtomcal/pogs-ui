@@ -19,6 +19,10 @@ angular.module('pogsUiApp', ['ui', 'ui.bootstrap', 'ngResource', 'ngSanitize'])
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl',
       })
+      .when('/search/:page', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl',
+      })
       .otherwise({
         redirectTo: '/'
       });

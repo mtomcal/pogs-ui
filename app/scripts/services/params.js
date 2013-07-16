@@ -1,7 +1,7 @@
 angular.module('pogsUiApp').
-    factory('Params', function($resource){
+    service('Params', function(){
     var default_params = {
-      page: '', 
+      page: '1', 
       gene: '',
       tid: '',
       domain: '',
@@ -13,15 +13,25 @@ angular.module('pogsUiApp').
       ppdb: '',
     };
     var params = _.clone(default_params);
+    var clear = function () {
+      params = _.clone(default_params);
+    };
     return {
       set: function (value) {
+        clear();
+        _.each(value, function (val, key) {
+          value[key] = val || '';
+        });
         _.extend(params, value);
       },
       get: function () {
         return params;
       },
+      page: function (page) {
+        params.page = page;
+      },
       clear: function () {
-        params = _.clone(default_params);
+        clear();
       }
     };
 });
