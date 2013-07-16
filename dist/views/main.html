@@ -3,87 +3,99 @@
     <tabset>
     <tab heading="Pog Search">
 <h3>Advanced Search By POG</h3>
-<p></p>   
-<p></p> 
-<form action="/#/search/" method="get" accept-charset="utf-8">        <b>Gene Search</b>
+<form class="form">
+  <div class="control-group">
+    <label class="control-label" for="gene"><b>Gene Locus Search</b></label>
+    <div class="controls">
+      <input class="input-xxlarge" id="gene" ng-model="pogSearch.gene" placeholder="Search By Gene ID i.e. GRMZM2G055768" type="text">
+    </div>
+  </div>
+  <div class="control-group">
+    <label for="domain" class="control-label"><b>Full Text Search</b></label>
+    <div class="controls">    
+      <input id="domain" class="input-xxlarge" ng-model="pogSearch.domain" placeholder="Search By Keyword i.e. &#039;ppr&#039; or by InterproID i.e. IPR001117" type="text">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="tid"><b>Genemodel Search</b></label>
+    <div class="controls">
+      <input class="input-xxlarge" id="tid" ng-model="pogSearch.tid" placeholder="Search By Gene Transcript ID i.e. GRMZM2G055768_P01" type="text">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="pog"><b>Go To POG ID</b></label>
+    <div class="controls">
+      <input id="pog" class="input-xxlarge" ng-model="pogSearch.pog" placeholder="Search By POG ID i.e. 5562" type="text">
+    </div>
+  </div>
+  <h4>Target Filtering</h4>
+  <div class="clearfix">  
+    <p style="padding-right: 10px" class="inline pull-left">Filter this search using </p>
+    <div class="btn-group inline pull-left">
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellBool" btn-radio="''">Don't Filter</button>
+
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellBool" btn-radio="'both'">Both</button>
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellBool" btn-radio="'either'">Either</button>
+    </div>
+    <div class="btn-group inline pull-left">
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellBool" btn-radio="'predotar'">Predotar</button>
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellBool" btn-radio="'targetp'">TargetP</button>
+    </div>
+  </div>
+  <div class="clearfix">    
+    <p style="padding-right: 10px" class="inline pull-left">targeting the</p>
+    <div class="btn-group inline pull-left">
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellTarget" btn-radio="'mitochondria'">Mitochondrion</button>
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellTarget" btn-radio="'plastid'">Chloroplast</button>
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellTarget" btn-radio="'endoret'">Endoplasmid Reticulum</button>
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellTarget" btn-radio="'signal'">Signal Peptide</button>
+    </div>
+
+  </div>
+  <div class="clearfix">
+    <p>
+      <b>AND</b>
+    </p>
+  </div>
+  <div class="clearfix">  
+    <p style="padding-right: 10px" class="inline pull-left">Filter this search using </p>
+    <div class="btn-group inline pull-left">
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.nuclearBool" btn-radio="''">Don't Filter</button>
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.nuclearBool" btn-radio="'both'">Both</button>
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.nuclearBool" btn-radio="'either'">Either</button>
+    </div>
+    <div class="btn-group inline pull-left">
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.nuclearBool" btn-radio="'nucpred'">Nucpred</button>
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.nuclearBool" btn-radio="'predictnls'">PredictNLS</button>
+    </div>
+    <p style="padding-left: 10px" class="inline pull-left">targeting the <b>nucleus</b></p>
+  </div>
+  <div class="clearfix">
+    <p><b>AND</b></p>
+  </div>
+  <div class="clearfix">  
+    <p style="padding-right: 10px" class="inline pull-left">Filter this search using <i>verified experimental data</i> from <b>PPDB</b> targeting the:</p>
+  </div>
+   <div class="clearfix">    
+    <div class="btn-group inline pull-left">
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.ppdbTarget" btn-radio="''">Don't Filter</button>
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.ppdbTarget" btn-radio="'mitochondrion'">Mitochondrion</button>
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.ppdbTarget" btn-radio="'plastid'">Chloroplast</button>
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.ppdbTarget" btn-radio="'nucleus'">Nucleus</button>
+      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.ppdbTarget" btn-radio="'ER'">Endoplasmid Reticulum</button>
+    </div>
+
+  </div>
   <br>
-  <input style="width:70%" class="search-box" name="gene" placeholder="Search By Gene ID i.e. GRMZM2G055768" type="text" id="form_gene">    <br>
-  <br>
-  <b>Domain & Keyword Search</b>
-  <br>
-  <input style="width:70%" class="search-box" name="domain" placeholder="Search By Keyword i.e. &#039;ppr&#039; or by InterproID i.e. IPR001117" type="text" id="form_domain">    <br>
-  <br>
-  <b>Transcript ID Search</b>
-  <br>
-  <input style="width:70%" class="search-box" name="tid" placeholder="Search By Gene Transcript ID i.e. GRMZM2G055768_P01" type="text" id="form_tid">    <br>
-  <br>
-  <b>POG Search</b>
-  <br>
-  <input style="width:70%" class="search-box" name="pog" placeholder="Search By POG ID i.e. 5562" type="text" id="form_pog">    <br>
-  <br>
-  <b>By Target Prediction</b>
-  <br>
-  <br>
-  <table class="target-search table table-condensed">
-    <tr>
-      <td>Predotar, TargetP</td>
-      <td>
-        <select name="targetop" id="form_targetop">
-          <option value="" style="text-indent: 0px" selected="selected">None</option>
-          <option value="both" style="text-indent: 0px">Both</option>
-          <option value="either" style="text-indent: 0px">Either</option>
-          <option value="predotar" style="text-indent: 0px">Predotar</option>
-          <option value="targetp" style="text-indent: 0px">TargetP</option>
-      </select>        </td>
-      <td>
-        <select name="location" id="form_location">
-          <option value="" style="text-indent: 0px" selected="selected">None</option>
-          <option value="mitochondria" style="text-indent: 0px">Mitochondria</option>
-          <option value="plastid" style="text-indent: 0px">Plastid</option>
-          <option value="endoret" style="text-indent: 0px">Endoplasmid Reticulum</option>
-          <option value="signal" style="text-indent: 0px">Signal Peptide</option>
-      </select>        </td>
-    </tr>
-    <tr>
-      <td>NucPred, PredictNLS</td>
-      <td>
-        <select name="nucop" id="form_nucop">
-          <option value="" style="text-indent: 0px" selected="selected">None</option>
-          <option value="both" style="text-indent: 0px">Both</option>
-          <option value="either" style="text-indent: 0px">Either</option>
-          <option value="nucpred" style="text-indent: 0px">NucPred</option>
-          <option value="prednls" style="text-indent: 0px">PredictNLS</option>
-      </select>        </td>
-      <td>
-      </td>
-    </tr>
-  </table>
-  <b>By Experimentally Verified Locations</b>
-  <br>
-  <br>
-  <table class="target-search table table-condensed">
-    <tr>
-      <td>PPDB</td>
-      <td>
-        <select name="ppdb" id="form_ppdb">
-          <option value="" style="text-indent: 0px" selected="selected">None</option>
-          <option value="mitochondria" style="text-indent: 0px">Mitochondria</option>
-          <option value="plastid" style="text-indent: 0px">Plastid</option>
-          <option value="nucleus" style="text-indent: 0px">Nucleus</option>
-          <option value="ER" style="text-indent: 0px">Endoplasmid Reticulum</option>
-      </select>      </td>
-    
-  </tr>
-</table>
-<input name="type" value="byPOG" type="hidden" id="form_type">    <input class="form_by_pog btn btn-primary" name="search" value="Search" type="submit" id="form_search">
-    </form>  
+  <button ng-click="pogSearchSubmit()" class="form_by_pog btn btn-primary">Search</button>
+</form>
 </tab>
     <tab heading="Gene Search">
 
     <h3>Advanced Search By Gene</h3>
     <p></p>
     <p></p>
-    <form action="http://cas-pogs.uoregon.edu/index.php/pogs/search/" method="get" accept-charset="utf-8">
+    <form action="#/search/" method="get" accept-charset="utf-8">
 <b>Gene Search</b>
 <br>
 <input style="width:70%" class="search-box" name="gene" value="Search By Gene ID i.e. GRMZM2G055768" type="text" id="form_gene">    <br>
