@@ -12,6 +12,7 @@ angular.module('pogsUiApp').
                      nucop: '@nucop',
                      location: '@location',
                      ppdb: '@ppdb',
+                     pogMethod: '@pogMethod',
                      alt:'json', 
                      callback:'JSON_CALLBACK'
                    }, {

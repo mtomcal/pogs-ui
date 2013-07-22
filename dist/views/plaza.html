@@ -1,0 +1,19 @@
+<div class="row-fluid" ng-controller="PlazaCtrl">
+<h2>Plaza Orthologous Group {{id}}</h2>
+
+<center><img ng-show="!loadedGroup" width="25" height="25" src="images/ajax-loader.gif"></center>
+<table ng-hide="!loadedGroup" class="members table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Accession / Links</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  
+  <tr ng-model="orgdata" ng-repeat="item in orgdata">
+    <td><a target="_blank" href="{{urlmap(item.genemodel)}}">{{item.genemodel}}</a></td>
+    <td>{{item.desc}}</td>
+  </tr>
+  
+</table>
+</div>

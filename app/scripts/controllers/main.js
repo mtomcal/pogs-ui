@@ -7,6 +7,7 @@ angular.module('pogsUiApp')
     $scope.pogSearch.nuclearBool = '';
     $scope.pogSearch.ppdbTarget = '';
     $scope.pogSearch.pog = '';
+    $scope.pogSearch.pogMethod = 'groups';
 
     $scope.geneSearch = {};
     $scope.geneSearch.subCellBool = '';
@@ -26,6 +27,7 @@ angular.module('pogsUiApp')
         nucop: $scope.pogSearch.nuclearBool,
         location: $scope.pogSearch.subCellTarget,
         ppdb: $scope.pogSearch.ppdbTarget,
+        pogMethod: $scope.pogSearch.pogMethod
       });
 
       $location.path('/search');

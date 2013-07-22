@@ -5,6 +5,16 @@
 <h3>Advanced Search By POG</h3>
 <form class="form">
   <div class="control-group">
+    <label class="control-label" for="orthology"><b>Orthology Prediction Method</b></label>
+    <div class="controls">
+      <div id="orthology" class="btn-group">
+        <button type="button" class="btn btn-small btn-secondary" ng-model="pogSearch.pogMethod" btn-radio="'groups'">Gramene</button>
+        <button type="button" class="btn btn-small btn-secondary" ng-model="pogSearch.pogMethod" btn-radio="'plaza_groups'">Plaza</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-group">
     <label class="control-label" for="gene"><b>Gene Locus Search</b></label>
     <div class="controls">
       <input class="input-xxlarge" id="gene" ng-model="pogSearch.gene" placeholder="Search By Gene ID i.e. GRMZM2G055768" type="text">

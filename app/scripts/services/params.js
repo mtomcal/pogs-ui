@@ -11,6 +11,7 @@ angular.module('pogsUiApp').
       nucop: '',
       location: '',
       ppdb: '',
+      pogMethod: '',
     };
     var params = _.clone(default_params);
     var clear = function () {

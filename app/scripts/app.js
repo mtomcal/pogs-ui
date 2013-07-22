@@ -39,6 +39,10 @@ angular.module('pogsUiApp', ['ui', 'ui.bootstrap', 'ngResource', 'ngSanitize'])
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
       })
+      .when('/plaza/:id', {
+        templateUrl: 'views/plaza.html',
+        controller: 'PlazaCtrl',
+      })
       .otherwise({
         redirectTo: '/'
       });

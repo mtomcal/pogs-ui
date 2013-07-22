@@ -25,6 +25,12 @@ angular.module('pogsUiApp')
     $scope.setPage = function (page, url) {
       $location.path('/'+url+'/'+page);
     };
+    $scope.pogMethod = function () {
+      if (Params.get().pogMethod == 'plaza_groups') {
+        return 'plaza'
+      }
+      return 'pog'
+    };
     $scope.results = Search.query(Params.get(), function (data) {
       if (data.results.length == 0) {
         $scope.loader = false;
@@ -33,7 +39,11 @@ angular.module('pogsUiApp')
       }
       if (Object.keys(data.results).length == 1) {
         var keys = Object.keys(data.results);
-        $location.path('/pog/'+keys[0]);
+        if (Params.get().pogMethod == 'plaza_groups') {
+          $location.path('/plaza/'+keys[0]);
+        } else {
+          $location.path('/pog/'+keys[0]);
+        }
         return;
       }
       $scope.loader = false;
