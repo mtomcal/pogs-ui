@@ -1,17 +1,5 @@
 <div class="row-fluid" ng-controller="PogCtrl">
-<h2>Orthologous Group {{id}}</h2>
-
-<div class="btn-group">
-        <button type="button" class="btn btn-secondary" ng-model="dataset" btn-radio="'blast'">Blast Related</button>
-        <button type="button" class="btn btn-secondary" ng-model="dataset" btn-radio="'groups'">Orthologous Group</button>
-</div>
-<div class="btn-group">
-        <button type="button" class="btn btn-secondary" ng-model="datatype" btn-radio="'fasta'">Fasta</button>
-        <button type="button" class="btn btn-secondary" ng-model="datatype" btn-radio="'align'">Alignment</button>
-</div>
-<button type="button" class="btn btn-secondary" ng-click="dataSubmit()">Fetch Data</button>
-<br>
-<br>
+<h2>Gramene Orthologous Group {{id}}</h2>
 <center><img ng-show="!loadedGroup" width="25" height="25" src="images/ajax-loader.gif"></center>
 <table ng-hide="!loadedGroup" class="members table table-bordered table-striped">
   <thead>
@@ -44,7 +32,7 @@
   </tr>
 </table>
 </tab>
-<tab select="loadBlastDomains()" heading="BLAST Related Domains">
+<tab select="loadBlastDomains()" heading="Closely Related Proteins">
 
 <center><img ng-show="!loadedBlast" width="25" height="25" src="images/ajax-loader.gif"></center>
 <table ng-hide="!loadedBlast" class="domain-maps table table-bordered">
@@ -68,7 +56,22 @@
 
 <div class="row-fluid"></div>
 
-<h3>Experimentally Verified Targets (PPDB)</h3>
+<h3>Data Mart</h3>
+
+<div class="btn-group">
+  <button type="button" class="btn btn-secondary" ng-model="dataset" btn-radio="'blast'">Closely Related Proteins</button>
+  <button type="button" class="btn btn-secondary" ng-model="dataset" btn-radio="'groups'">Orthologous Group</button>
+</div>
+<div class="btn-group">
+  <button type="button" class="btn btn-secondary" ng-model="datatype" btn-radio="'fasta'">Fasta</button>
+  <button type="button" class="btn btn-secondary" ng-model="datatype" btn-radio="'align'">Alignment</button>
+</div>
+<button type="button" class="btn btn-secondary" ng-click="dataSubmit()">Fetch Data</button> 
+
+<br>
+<br>
+
+<h3>Experimentally Verified Intracellular Location</h3>
 
 <table class="table table-bordered table-striped">
   <tr>
@@ -85,9 +88,9 @@
   </tr>
 </table>
 
-<h3>Predicted Targets</h3>
+<h3>Predicted Intracellular Location</h3>
 <tabset>
-<tab heading="Subcellular Targeting">
+<tab heading="Mitochondrial, Chloroplast Targeting">
 <table class="targeting-1 table table-bordered table-striped">
   <tr>
     <th>Accession</th>

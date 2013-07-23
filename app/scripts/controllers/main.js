@@ -2,9 +2,54 @@
 
 angular.module('pogsUiApp')
   .controller('MainCtrl', function ($scope, $location, Params) {
+    window.myscope = $scope;
     $scope.pogSearch = {};
     $scope.pogSearch.subCellBool = '';
+
+    $scope.$watch('pogSearch.predotar + pogSearch.targetp', function () {
+      var resolve = function() {
+        if ($scope.pogSearch.predotar && $scope.pogSearch.targetp) {
+          return 'either';
+        }
+        if ($scope.pogSearch.predotar) {
+          return 'predotar';
+        }
+        if ($scope.pogSearch.targetp) {
+          return 'targetp';
+        }
+        return '';
+      };
+      $scope.pogSearch.subCellBool = resolve();
+    });
+
     $scope.pogSearch.nuclearBool = '';
+
+    $scope.$watch('pogSearch.nucpred + pogSearch.predictnls', function() {
+      var resolve = function () {
+        if ($scope.pogSearch.nucpred && $scope.pogSearch.predictnls) {
+          return 'either';
+        }
+        if ($scope.pogSearch.nucpred) {
+          return 'nucpred';
+        }
+        if ($scope.pogSearch.predictnls) {
+          return 'predictnls';
+        }
+        return '';
+      }
+      $scope.pogSearch.nuclearBool = resolve();
+    });
+    $scope.pogSearch.predotar = false;
+    $scope.pogSearch.targetp = false;
+
+    $scope.$watch('pogSearch.subCellTarget + pogSearch.predotar + pogSearch.targetp', function() {
+      if ($scope.pogSearch.predotar || $scope.pogSearch.targetp) {
+        return;
+      }
+      $scope.pogSearch.subCellTarget = '';
+    });
+    
+    $scope.pogSearch.ppdb = false;
     $scope.pogSearch.ppdbTarget = '';
     $scope.pogSearch.pog = '';
     $scope.pogSearch.pogMethod = 'groups';
@@ -14,6 +59,26 @@ angular.module('pogsUiApp')
     $scope.geneSearch.nuclearBool = '';
     $scope.geneSearch.ppdbTarget = '';
     $scope.geneSearch.pog = '';
+
+    $scope.reset = function () {
+      $scope.pogSearch.targetp = 
+      $scope.pogSearch.predotar = 
+      $scope.pogSearch.nucpred = 
+      $scope.pogSearch.predictnls = 
+      $scope.pogSearch.ppdbTarget = 
+      $scope.pogSearch.subCellTarget = 
+      $scope.pogSearch.pog = 
+      $scope.pogSearch.nuclearBool =
+      $scope.pogSearch.subCellBool = '';
+      $scope.pogSearch.ppdb = false;
+    }
+
+    $scope.$watch('pogSearch.ppdb + pogSearch.ppdbTarget', function() {
+      if ($scope.pogSearch.ppdb) {
+        return;
+      }
+      $scope.pogSearch.ppdbTarget = '';
+    });
 
     $scope.pogSearchSubmit = function() {
       Params.clear();

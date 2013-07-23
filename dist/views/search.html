@@ -1,5 +1,6 @@
 <div ng-controller="SearchCtrl">
-<h2>{{results.count || 0}} Results</h2>
+<h2 ng-show="!loadedResults">Loading...</h2>
+<h2 ng-show="loadedResults">{{results.count || 0}} Results</h2>
 <hr>
 <center ng-show="loadedResults">
   <pagination max-size="10" boundary-links="true" ng-model="page" on-select-page="setPage(page, 'search')" num-pages="total_pages" current-page="page"></pagination>
