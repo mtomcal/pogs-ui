@@ -17,22 +17,16 @@
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="gene"><b>Gene Locus Search</b></label>
+    <label class="control-label" for="gene"><b>Gene Search</b></label>
     <div class="controls">
       <input class="input-xxlarge" id="gene" ng-model="pogSearch.gene" placeholder="Search By Gene ID e.g. GRMZM2G055768" type="text">
     </div>
   </div>
   <div class="control-group">
     <label for="domain" class="control-label"><b>Full Text Search</b></label>
-    <small><p>Keywords from Gene Descriptions, Domain names, Interpro IDs. <i>You may use '+' for AND boolean searches.</i></p></small>
+    <small><p>Keywords from Gene Descriptions, Domain names, Interpro IDs. <a tooltip="You may use '+' for AND boolean searches. e.g. '+rrm +ppr' for getting RRM and PPR results. 'rrm ppr' as a search term would yield RRM OR PPR in the results. '-PPR' would yield everything that is NOT PPR in the results. 'PPR*' would yield results like PPR32, PPR10 as this is a wildcard search.">More Help</a></p></small>
     <div class="controls">    
       <input id="domain" class="input-xxlarge" ng-model="pogSearch.domain" placeholder="Search By Keyword e.g. &#039;ppr&#039; or by InterproID e.g. IPR001117" type="text">
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="tid"><b>Genemodel Search</b></label>
-    <div class="controls">
-      <input class="input-xxlarge" id="tid" ng-model="pogSearch.tid" placeholder="Search By Gene Transcript ID i.e. GRMZM2G055768_P01" type="text">
     </div>
   </div>
   <div class="control-group">
@@ -41,7 +35,7 @@
       <input id="pog" class="input-xxlarge" ng-model="pogSearch.pog" placeholder="Search By POG ID i.e. 5562" type="text">
     </div>
   </div>
-  <h4>Limit Search By Intracellular Location</h4>
+  <h5>Limit Search By Predicted or Established Intracellular Location of Gene Product</h5>
   <small><p><i>All Intracellular Filters Are AND boolean searches.</i></p></small>
   <div class="clearfix">  
     <p style="padding-right: 10px" class="inline pull-left">Filter this search using </p>
@@ -49,16 +43,17 @@
       <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.predotar" btn-checkbox="'predotar'">Predotar</button>
       <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.targetp" btn-checkbox="'targetp'">TargetP</button>
     </div>
-  </div>
-  <div class="clearfix">    
-    <p style="padding-right: 10px" class="inline pull-left">prediction to</p>
+     <p style="padding: 0 5px" class="inline pull-left">prediction to</p>
     <div class="btn-group inline pull-left">
       <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellTarget" btn-radio="'mitochondria'">Mitochondrion</button>
       <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellTarget" btn-radio="'plastid'">Chloroplast</button>
       <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellTarget" btn-radio="'endoret'">Endoplasmid Reticulum</button>
     </div>
+
   </div>
-  <div class="clearfix">  
+      <div class="clearfix">    
+    </div>
+    <div class="clearfix">  
     <p style="padding-right: 10px" class="inline pull-left">Filter this search using </p>
     <div class="btn-group inline pull-left">
       <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.nucpred" btn-checkbox="'nucpred'">Nucpred</button>
@@ -67,7 +62,7 @@
     <p style="padding-left: 10px" class="inline pull-left">prediction to the <b>nucleus</b>.</p>
   </div>
   <div class="clearfix">  
-    <p style="padding-right: 10px" class="inline pull-left">Filter this search using <i>verified experimental data</i> from <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.ppdb" btn-checkbox="'ppdb'" tooltip="Plant Proteome Database (Cornell)">PPDB</button> targeting the:</p>
+    <p style="padding-right: 10px" class="inline pull-left">Filter this search using experimental data from <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.ppdb" btn-checkbox="'ppdb'" tooltip="Plant Proteome Database (Cornell)">PPDB</button> validating location in:</p>
   </div>
    <div class="clearfix">    
     <div class="btn-group inline pull-left">
