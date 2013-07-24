@@ -24,10 +24,12 @@ angular.module('pogsUiApp')
 
     $scope.$watch('pogSearch.genesearch', function() {
       var resolve = function() {
-        if ($scope.pogSearch.genesearch.match(/(\_|\.)+/)) {
+        if ($scope.pogSearch.genesearch.match(/(\_|\.){1}/)) {
           $scope.pogSearch.tid = $scope.pogSearch.genesearch;
+          $scope.pogSearch.gene = '';
           return;
         }
+        $scope.pogSearch.tid = '';
         $scope.pogSearch.gene = $scope.pogSearch.genesearch;
       };
       resolve();

@@ -31,10 +31,12 @@
           <li><a href="http://cas-pogs.uoregon.edu/dev/index.php/blast/search">BLAST</a></li>
           <li><a href="#/about">About Us</a></li>
         </ul>
+        <div ng-controller="QuickSearch">
         <form class="navbar-form pull-right">
-          <input type="text" class="span2">
-          <button type="submit" class="btn">Search</button>
+          <input placeholder="Gene Search" ng-model="pogSearch.genesearch" type="text" class="span2">
+          <button ng-click="pogSearchSubmit()" class="btn">Search</button>
         </form>
+        </div>
       </div>
     </div>
 
@@ -62,7 +64,7 @@
     <script src="components/jsphylosvg/jsphylosvg.js"></script>
 
 
-    <script src="scripts/8349406d.scripts.js"></script>
+    <script src="scripts/b347223e.scripts.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>

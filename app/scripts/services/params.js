@@ -1,5 +1,5 @@
 angular.module('pogsUiApp').
-    service('Params', function(){
+    service('Params', function($rootScope){
     var default_params = {
       page: '1', 
       gene: '',
@@ -24,6 +24,7 @@ angular.module('pogsUiApp').
           value[key] = val || '';
         });
         _.extend(params, value);
+        $rootScope.$broadcast('Params:set');
       },
       get: function () {
         return params;
