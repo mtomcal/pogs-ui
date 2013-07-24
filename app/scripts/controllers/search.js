@@ -15,6 +15,7 @@ angular.module('pogsUiApp')
       Params.clear();
       Params.set({
         tid: $routeParams.genemodel,
+        method: 'groups',
         type: 'byPOG',
       });
     }
