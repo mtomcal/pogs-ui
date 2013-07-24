@@ -12,8 +12,8 @@ angular.module('pogsUiApp')
     $scope.dataset = 'blast';
     $scope.datatype = 'fasta';
 
-    $scope.dataSubmit = function () {
-      $location.path('/mart/' + $scope.id + '/' + $scope.datatype + '/' + $scope.dataset);
+    $scope.dataSubmit = function (dataset, datatype) {
+      $location.path('/mart/' + $scope.id + '/' + datatype + '/' + dataset);
     };
 
     $scope.urlmap = function(genemodel) {

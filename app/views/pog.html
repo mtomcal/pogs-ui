@@ -30,51 +30,6 @@
     </td>
   </tr>
 </table>
-
-<h3>Cladogram of Closely Related Proteins</h3>
-<tabset>
-<tab heading="Cladogram">
-<small><p>Asterisks (*) mark members of this POG</p></small>
-<div id="svgCanvas"></div>
-
-<div class="row-fluid"></div>
-</tab>
-<tab select="loadBlastDomains()" heading="Domain Architecture of Closely Related Proteins">
-
-<center><img ng-show="!loadedBlast" width="25" height="25" src="images/ajax-loader.gif" /></center>
-<table ng-hide="!loadedBlast" class="domain-maps table table-bordered">
-  <tr>
-    <th>Gene Model</th>
-    <th>Domain Map</th>
-  </tr>
-  <tr ng-model="blast_domains" ng-repeat="(item, value) in blast_domains">
-    <td class="linkify"><a href="{{urlmap(item)}}">{{item}}</a></td>
-    <td>
-      <div ng-bind-html="value[1]"></div>
-      <img src="http://cas-pogs.uoregon.edu{{value[0]}}" id="{{item}}" />
-    </td>
-  </tr>
-</table>
-</tab>
-
-</tabset>
-
-
-<h3>Data Mart</h3>
-
-<div class="btn-group">
-  <button type="button" class="btn btn-secondary" ng-model="dataset" btn-radio="'blast'">Closely Related Proteins</button>
-  <button type="button" class="btn btn-secondary" ng-model="dataset" btn-radio="'groups'">Orthologous Group</button>
-</div>
-<div class="btn-group">
-  <button type="button" class="btn btn-secondary" ng-model="datatype" btn-radio="'fasta'">Fasta</button>
-  <button type="button" class="btn btn-secondary" ng-model="datatype" btn-radio="'align'">Alignment</button>
-</div>
-<button type="button" class="btn btn-secondary" ng-click="dataSubmit()">Fetch Data</button> 
-
-<br />
-<br />
-
 <h3>Experimentally Verified Intracellular Location</h3>
 
 <table class="table table-bordered table-striped">
@@ -152,5 +107,42 @@
 </tab>
 </tabset>
 
+<h3>Cladogram of Closely Related Proteins</h3>
+<tabset>
+<tab heading="Cladogram">
+<small><p>Asterisks (*) mark members of this POG</p></small>
+<div id="svgCanvas"></div>
+
+<div class="row-fluid"></div>
+</tab>
+<tab select="loadBlastDomains()" heading="Domain Architecture of Closely Related Proteins">
+
+<center><img ng-show="!loadedBlast" width="25" height="25" src="images/ajax-loader.gif" /></center>
+<table ng-hide="!loadedBlast" class="domain-maps table table-bordered">
+  <tr>
+    <th>Gene Model</th>
+    <th>Domain Map</th>
+  </tr>
+  <tr ng-model="blast_domains" ng-repeat="(item, value) in blast_domains">
+    <td class="linkify"><a href="{{urlmap(item)}}">{{item}}</a></td>
+    <td>
+      <div ng-bind-html="value[1]"></div>
+      <img src="http://cas-pogs.uoregon.edu{{value[0]}}" id="{{item}}" />
+    </td>
+  </tr>
+</table>
+</tab>
+
+</tabset>
+
+
+<h3>Data Mart</h3>
+
+  <button type="button" class="btn btn-success" ng-click="dataSubmit('groups', 'fasta')">Sequences of POG members</button>
+  <button type="button" class="btn btn-success" ng-click="dataSubmit('groups', 'align')">Alignment of POG members</button>
+  <button type="button" class="btn btn-success" ng-click="dataSubmit('blast', 'fasta')">Sequences of Closely Related Proteins</button>
+  <button type="button" class="btn btn-success" ng-click="dataSubmit('blast', 'align')">Alignment of Closely Related Proteins</button>
+<br />
+<br />
 
  </div>

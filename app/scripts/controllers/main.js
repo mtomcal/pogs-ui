@@ -2,7 +2,6 @@
 
 angular.module('pogsUiApp')
   .controller('MainCtrl', function ($scope, $location, Params) {
-    window.myscope = $scope;
     $scope.pogSearch = {};
     $scope.pogSearch.subCellBool = '';
 
@@ -20,6 +19,18 @@ angular.module('pogsUiApp')
         return '';
       };
       $scope.pogSearch.subCellBool = resolve();
+    });
+    $scope.pogSearch.genesearch = '';
+
+    $scope.$watch('pogSearch.genesearch', function() {
+      var resolve = function() {
+        if ($scope.pogSearch.genesearch.match(/(\_|\.)+/)) {
+          $scope.pogSearch.tid = $scope.pogSearch.genesearch;
+          return;
+        }
+        $scope.pogSearch.gene = $scope.pogSearch.genesearch;
+      };
+      resolve();
     });
 
     $scope.pogSearch.nuclearBool = '';
@@ -113,6 +124,8 @@ angular.module('pogsUiApp')
 
       $location.path('/genesearch');
     }
+
+    $scope.booleanGuidelines = "<p>For Boolean Searches: <ul style=\"text-align:left;\"><li>Use '+TERM1 +TERM2' for AND searches</li><li>A space for OR Searches</li><li>Quotes for exact match searches</li></ul></p>";
 
 
   });

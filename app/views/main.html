@@ -2,7 +2,7 @@
   <div class="span6">
     <h1 class="text-center">Search For POGs</h1>
     <small>
-      <p>Search for Putative Orthologous Groups in Arabidopsis thaliana, Zea mays, Orza sativa, and Populus trichocarpa, meeting the following criteria:</p>
+      <p>Search for Putative Orthologous Groups (POGs) containing genes in Arabidopsis thaliana, Zea mays, Oryza sativa, and/or Populus trichocarpa that meet the following criteria:</p>
     </small>
 <div class="row-fluid">
 <div class="clearfix"></div>
@@ -19,12 +19,12 @@
   <div class="control-group">
     <label class="control-label" for="gene"><b>Gene Search</b></label>
     <div class="controls">
-      <input class="input-xxlarge" id="gene" ng-model="pogSearch.gene" placeholder="Search By Gene ID e.g. GRMZM2G055768" type="text"/>
+      <input class="input-xxlarge" id="gene" ng-model="pogSearch.genesearch" placeholder="Search By Gene ID e.g. GRMZM2G055768" type="text"/>
     </div>
   </div>
   <div class="control-group">
     <label for="domain" class="control-label"><b>Full Text Search</b></label>
-    <small><p>Keywords from Gene Descriptions, Domain names, Interpro IDs. <a tooltip="You may use '+' for AND boolean searches. e.g. '+rrm +ppr' for getting RRM and PPR results. 'rrm ppr' as a search term would yield RRM OR PPR in the results. '-PPR' would yield everything that is NOT PPR in the results. 'PPR*' would yield results like PPR32, PPR10 as this is a wildcard search.">More Help</a></small>
+    <small><p>Keywords from Gene Descriptions, Domain names, Interpro IDs. <a tooltip-html-unsafe="{{booleanGuidelines}}">Guidelines for Boolean Searches</a></small>
     <div class="controls">    
       <input id="domain" class="input-xxlarge" ng-model="pogSearch.domain" placeholder="Search By Keyword e.g. &#039;ppr&#039; or by InterproID e.g. IPR001117" type="text" />
     </div>
@@ -40,14 +40,14 @@
   <div class="clearfix">  
     <p style="padding-right: 10px;" class="inline pull-left">Filter this search using </p>
     <div class="btn-group inline pull-left">
-      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.predotar" btn-checkbox="'predotar'">Predotar</button>
-      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.targetp" btn-checkbox="'targetp'">TargetP</button>
+      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.predotar" btn-checkbox="'predotar'">Predotar</button>
+      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.targetp" btn-checkbox="'targetp'">TargetP</button>
     </div>
      <p style="padding: 0 5px;" class="inline pull-left">prediction to</p>
     <div class="btn-group inline pull-left">
-      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellTarget" btn-radio="'mitochondria'">Mitochondrion</button>
-      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellTarget" btn-radio="'plastid'">Chloroplast</button>
-      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.subCellTarget" btn-radio="'endoret'">Endoplasmid Reticulum</button>
+      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.subCellTarget" btn-radio="'mitochondria'">Mitochondrion</button>
+      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.subCellTarget" btn-radio="'plastid'">Chloroplast</button>
+      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.subCellTarget" btn-radio="'endoret'">Endoplasmid Reticulum</button>
     </div>
 
   </div>
@@ -56,20 +56,20 @@
     <div class="clearfix">  
     <p style="padding-right: 10px;" class="inline pull-left">Filter this search using </p>
     <div class="btn-group inline pull-left">
-      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.nucpred" btn-checkbox="'nucpred'">Nucpred</button>
-      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.predictnls" btn-checkbox="'predictnls'">PredictNLS</button>
+      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.nucpred" btn-checkbox="'nucpred'">Nucpred</button>
+      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.predictnls" btn-checkbox="'predictnls'">PredictNLS</button>
     </div>
     <p style="padding-left: 10px;" class="inline pull-left">prediction to the <b>nucleus</b>.</p>
   </div>
   <div class="clearfix">  
-    <p style="padding-right: 10px;" class="inline pull-left">Filter this search using experimental data from <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.ppdb" btn-checkbox="'ppdb'" tooltip="Plant Proteome Database (Cornell)">PPDB</button> validating location in:</p>
+    <p style="padding-right: 10px;" class="inline pull-left">Filter this search using experimental data from <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.ppdb" btn-checkbox="'ppdb'" tooltip="Plant Proteome Database (Cornell)">PPDB</button> validating location in:</p>
   </div>
    <div class="clearfix">    
     <div class="btn-group inline pull-left">
-      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.ppdbTarget" btn-radio="'mitochondrion'">Mitochondrion</button>
-      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.ppdbTarget" btn-radio="'plastid'">Chloroplast</button>
-      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.ppdbTarget" btn-radio="'nucleus'">Nucleus</button>
-      <button type="button" class="btn btn-mini btn-secondary" ng-model="pogSearch.ppdbTarget" btn-radio="'ER'">Endoplasmid Reticulum</button>
+      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.ppdbTarget" btn-radio="'mitochondrion'">Mitochondrion</button>
+      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.ppdbTarget" btn-radio="'plastid'">Chloroplast</button>
+      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.ppdbTarget" btn-radio="'nucleus'">Nucleus</button>
+      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.ppdbTarget" btn-radio="'ER'">Endoplasmid Reticulum</button>
     </div>
   </div>
   <br />
