@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pogsUiApp')
-  .controller('PogCtrl', function ($scope, $location, $routeParams, Pog, Domains, BlastDomains, Predotar, Targetp, Prednls, Ppdb, Nucpred, Tree) {
+  .controller('PogCtrl', function ($scope, $location, $routeParams, Pog, Domains, BlastDomains, Predotar, Targetp, Prednls, Ppdb, Nucpred, Tree, Plaza, Search) {
 
     $scope.loadedBlast = false;
     $scope.loadedOrtho = false;
@@ -11,6 +11,7 @@ angular.module('pogsUiApp')
     $scope.id = $routeParams.id;
     $scope.dataset = 'blast';
     $scope.datatype = 'fasta';
+    $scope.flyout = false;
 
     $scope.dataSubmit = function (dataset, datatype) {
       $location.path('/mart/' + $scope.id + '/' + datatype + '/' + dataset);
@@ -115,6 +116,33 @@ angular.module('pogsUiApp')
         $scope.loadTree(tree);
       });
     });
+
+    $scope.plazaResults = [];
+    $scope.plazaId = 0;
+
+    $scope.fetchPlaza = function (gene) {
+      console.log(gene)
+      var search = Search.query({
+        page: '1', 
+        gene: '',
+        tid: gene,
+        domain: '',
+        pog: '',
+        type: 'byPOG',
+        targetop: '',
+        nucop: '',
+        location: '',
+        ppdb: '',
+        pogMethod: 'plaza_groups',
+      }, function(data) {
+        var key = Object.keys(data.results);
+        $scope.plazaId = key[0];
+        Plaza.query({id: key[0]}, function (plaza) {
+          $scope.plazaResults = plaza.locus;
+        });
+      });
+
+    }
 
     $scope.prednls = Prednls.query({id: $routeParams.id});
     $scope.nucpred = Nucpred.query({id: $routeParams.id});
