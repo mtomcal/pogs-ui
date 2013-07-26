@@ -12,8 +12,8 @@ angular.module('pogsUiApp')
       if (!$routeParams.genemodel) {
         return;
       }
-      Params.clear();
-      Params.set({
+      Params.clear('genemodel');
+      Params.set('genemodel', {
         tid: $routeParams.genemodel,
         method: 'groups',
         type: 'byPOG',
@@ -23,7 +23,7 @@ angular.module('pogsUiApp')
     genemodel($routeParams);
 
     $scope.page = parseInt($routeParams.page) || 1; 
-    Params.page($scope.page);
+    Params.page('pogSearch', $scope.page);
     $scope.total_pages = 0; 
     $scope.loader = true;
     $scope.loadedResults = false;
@@ -32,14 +32,14 @@ angular.module('pogsUiApp')
       $location.path('/'+url+'/'+page);
     };
     $scope.pogMethod = function () {
-      if (Params.get().pogMethod == 'plaza_groups') {
+      if (Params.get('pogSearch').pogMethod == 'plaza_groups') {
         return 'plaza'
       }
       return 'pog'
     };
 
     $scope.resolveSearch = function () {
-      return Search.query(Params.get(), function (data) {
+      return Search.query(Params.get('pogSearch'), function (data) {
         if (data.results.length == 0) {
           $scope.loader = false;
           $scope.noResults = true;
@@ -47,10 +47,10 @@ angular.module('pogsUiApp')
         }
         if (Object.keys(data.results).length == 1) {
           var keys = Object.keys(data.results);
-          if (Params.get().pogMethod == 'plaza_groups') {
-            //$location.path('/plaza/'+keys[0]);
+          if (Params.get('pogSearch').pogMethod == 'plaza_groups') {
+            $location.path('/plaza/'+keys[0]);
           } else {
-            //$location.path('/pog/'+keys[0]);
+            $location.path('/pog/'+keys[0]);
           }
           return;
         }

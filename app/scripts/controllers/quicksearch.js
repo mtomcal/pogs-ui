@@ -26,8 +26,8 @@ angular.module('pogsUiApp')
     });
 
     $scope.pogSearchSubmit = function() {
-      Params.clear();
-      Params.set({
+      Params.clear('pogSearch');
+      Params.set('pogSearch', {
         gene: $scope.pogSearch.gene,
         tid: $scope.pogSearch.tid,
         type: 'byPOG',

@@ -94,8 +94,8 @@ angular.module('pogsUiApp')
     });
 
     $scope.pogSearchSubmit = function() {
-      Params.clear();
-      Params.set({
+      Params.clear('pogSearch');
+      Params.set('pogSearch', {
         gene: $scope.pogSearch.gene,
         tid: $scope.pogSearch.tid,
         domain: $scope.pogSearch.domain,
@@ -111,8 +111,8 @@ angular.module('pogsUiApp')
       $location.path('/search');
     }
     $scope.geneSearchSubmit = function() {
-      Params.clear();
-      Params.set({
+      Params.clear('geneSearch');
+      Params.set('geneSearch', {
         gene: $scope.geneSearch.gene,
         tid: $scope.geneSearch.tid,
         domain: $scope.geneSearch.domain,

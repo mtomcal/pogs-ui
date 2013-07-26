@@ -13,27 +13,27 @@ angular.module('pogsUiApp').
       ppdb: '',
       pogMethod: '',
     };
-    var params = _.clone(default_params);
-    var clear = function () {
-      params = _.clone(default_params);
+    var channels = {};
+    var clear = function (channel) {
+      channels[channel] = _.clone(default_params);
     };
     return {
-      set: function (value) {
-        clear();
+      set: function (channel, value) {
+        clear(channel);
         _.each(value, function (val, key) {
           value[key] = val || '';
         });
-        _.extend(params, value);
+        _.extend(channels[channel], value);
         $rootScope.$broadcast('Params:set');
       },
-      get: function () {
-        return params;
+      get: function (channel) {
+        return channels[channel];
       },
-      page: function (page) {
-        params.page = page;
+      page: function (channel, page) {
+        channels[channel].page = page;
       },
-      clear: function () {
-        clear();
+      clear: function (channel) {
+        clear(channel);
       }
     };
 });

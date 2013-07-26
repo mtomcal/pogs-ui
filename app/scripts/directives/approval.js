@@ -13,13 +13,13 @@ angular.module('pogsUiApp').
           if ($scope.genemodels.length < 1) {
             return;
           }
-          Params.clear();
-          Params.set({
+          Params.clear('approval');
+          Params.set('approval', {
             tid: $scope.genemodels[0],
             type: 'byPOG',
             pogMethod: 'plaza_groups',
           });
-          Search.query(Params.get(), function (search) {
+          Search.query(Params.get('approval'), function (search) {
             var keys = Object.keys(search.results);
             Plaza.query({id: keys[0]}, function (plaza) {
               var plaza_genes = _.map(plaza.locus, function (val) {
