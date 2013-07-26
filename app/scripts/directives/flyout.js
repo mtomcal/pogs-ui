@@ -46,15 +46,26 @@ angular.module('pogsUiApp').
       replace: true,
       scope: {},
       controller: function ($scope, $element) {
+        angular.element(".navbar")
+        .addClass('flyout-body')
+        .addClass('out');
+        angular.element("footer")
+        .addClass('flyout-body')
+        .addClass('out');
+
         $scope.toggle = function (show) {
           if (show) {
-            $element.addClass('flyout-body');
+            angular.element(".navbar").removeClass('out');
+            angular.element("footer").removeClass('out');
+            $element.removeClass('out');
             return;
           }
-          $element.removeClass('flyout-body');
+          $element.addClass('out');
+          angular.element(".navbar").addClass('out');
+          angular.element("footer").addClass('out');
         }
       },
-      template: '<div ng-transclude></div>',
+      template: '<div class="flyout-body out" ng-transclude></div>',
       link: function (scope, element, attr, FlyoutCtrl) {
         FlyoutCtrl.setFlyoutBody(scope);
       },
@@ -68,19 +79,18 @@ angular.module('pogsUiApp').
       restrict: 'E',
       transclude: true,
       scope: {},
-      controller: function ($scope) {
+      controller: function ($scope, $element) {
         $scope.show = false;
         $scope.toggle = function (show) {
           if (show) {
-            $scope.show = true;
-            $scope.$apply();
+            $element.find('.flyout').removeClass("out");
             return;
           }
-          $scope.show = false;
+          $element.find('.flyout').addClass("out");
           //$scope.$apply();
         }
       },
-      template: '<div ng-show="show" class="flyout"><div class="content" ng-transclude><a ng-click="close()" href="">Close</a></div></div>',
+      template: '<div class="flyout out"><div class="content" ng-transclude><a ng-click="close()" href="">Close</a></div></div>',
       link: function (scope, element, attr, FlyoutCtrl) {
         scope.close = function () {
           FlyoutCtrl.deactivate();

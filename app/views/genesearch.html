@@ -14,7 +14,7 @@
       </tr>
       <tr ng-model="results" ng-repeat="(item, value) in results.results">
         <td><h3>{{item}}</h3></td>
-        <td><h2><a href="/ui/#/pog/{{value[0]}}">{{value[0]}}</a></h2></td>
+        <td><h2><a href="{{BASE_URL}}#/pog/{{value[0]}}">{{value[0]}}</a></h2></td>
         <td><p>{{value[1]}}</p></td>
       </tr>
     </tbody>

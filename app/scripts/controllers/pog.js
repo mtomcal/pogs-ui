@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('pogsUiApp')
-  .controller('PogCtrl', function ($scope, $location, $routeParams, Pog, Domains, BlastDomains, Predotar, Targetp, Prednls, Ppdb, Nucpred, Tree, Plaza, Search) {
+  .controller('PogCtrl', function ($scope, $location, $routeParams, BASE_URL, Pog, Domains, BlastDomains, Predotar, Targetp, Prednls, Ppdb, Nucpred, Tree, Plaza, Search) {
+
+
+    $scope.BASE_URL = BASE_URL;
 
     $scope.loadedBlast = false;
     $scope.loadedOrtho = false;
@@ -71,7 +74,7 @@ angular.module('pogsUiApp')
     };
 
     var processTree = function (tree, cb) {
-      var urlBase = "/ui/";
+      var urlBase = $scope.BASE_URL;
       var $xml = angular.element(tree);
       if (!$scope.loadedGroup) {
         cb(false);
