@@ -283,7 +283,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'jshint',
-    'test',
+    //'test',
     'coffee',
     'compass:dist',
     'useminPrepare',
@@ -293,8 +293,8 @@ module.exports = function (grunt) {
     'concat',
     'copy',
     'cdnify',
-    'ngmin',
-    'uglify',
+    //'ngmin',
+    //'uglify',
     'rev',
     'usemin'
   ]);
