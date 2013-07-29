@@ -56,6 +56,7 @@ angular.module('pogsUiApp')
           } else {
             $location.path('/pog/'+keys[0]);
           }
+          Params.clear(searchChannel);
           return;
         }
         $scope.loader = false;
