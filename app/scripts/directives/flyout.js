@@ -1,7 +1,9 @@
 angular.module('pogsUiApp').
-  controller('FlyoutCtrl', function ($scope) {
+  controller('FlyoutCtrl', function ($scope, $window, $rootScope) {
 
   var ctrl = this;
+
+  var transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
 
   ctrl.setFlyout = function (scope) {
     $scope.flyout = scope;
@@ -15,21 +17,18 @@ angular.module('pogsUiApp').
     $scope.flyoutBody.toggle(true);
     angular
     .element(".flyout")
-    .one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',   
+    .one(transitionEnd,   
          function(e) {
-           var $ = angular.element;
-           $("body").click('click.flyout', function (e) {
-             if ($(e.target).is($('button#plazaflyout'))){
-               return;
-             };
+           var locationChange = $rootScope.$on('$locationChangeSuccess', function (event, newLoc, oldLoc){
              ctrl.deactivate();
+             locationChange();
            });
          });
   };
 
   ctrl.deactivate = function () {
-    angular.element("body").off('.flyout');
-    angular.element(".flyout").off();
+    angular.element("body").off('click');
+    angular.element(".flyout").off('click');
     $scope.flyout.toggle(false);
     $scope.flyoutBody.toggle(false);
   };

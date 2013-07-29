@@ -7385,3 +7385,11 @@ FONT.T66 {
 .flyout-body.out {
   margin-left: 0;
 }
+
+/* line 44, _flyout.scss */
+.no-transition {
+  -moz-transition: none;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+}

@@ -7386,4 +7386,12 @@ FONT.T66 {
   margin-left: 0;
 }
 
+/* line 44, _flyout.scss */
+.no-transition {
+  -moz-transition: none;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
 .ui-resetwrap{position:relative;display:inline-block}.ui-reset{position:absolute;top:0;right:0;z-index:2;display:none;height:100%;cursor:pointer}.ui-resetwrap:hover .ui-reset{display:block}.ui-currency-pos{color:green}.ui-currency-neg{color:red}.ui-currency-zero{color:blue}.ui-currency-pos.ui-bignum,.ui-currency-neg.ui-smallnum{font-size:110%}.ui-match{background:yellow}

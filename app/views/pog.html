@@ -35,7 +35,7 @@
     <th>Domain Map</th>
   </tr>
   <tr ng-model="domains" ng-repeat="(item, value) in domains">
-    <td class="linkify"><a href="{{urlmap(item)}}">{{item}}</a></td>
+    <td class="linkify"><a target="_blank" href="{{urlmap(item)}}">{{item}}</a></td>
     <td>
       <div ng-bind-html="value[1]"></div>
       <img src="http://cas-pogs.uoregon.edu{{value[0]}}" id="{{item}}" />
@@ -52,7 +52,7 @@
     <th>Reference</th>
   </tr>
   <tr ng-repeat="item in ppdb">
-    <td><a href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td><a target="_blank" href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
     <td>{{item.annotation}}</td>
     <td>{{item.location}}</td>
     <td><a target="_blank" href="http://ppdb.tc.cornell.edu/dbsearch/gene.aspx?acc={{item.query_gm}}">Reference</a></td>
@@ -75,7 +75,7 @@
   </tr>
   <tbody ng-repeat="item in predotar">
   <tr>
-    <td rowspan="2"><a href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td rowspan="2"><a target="_blank" href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
     <td>Predotar</td>
     <td>{{item.ctp}}</td>
     <td>{{item.mtp}}</td>
@@ -104,7 +104,7 @@
   </tr>
   <tbody ng-repeat="item in prednls">
   <tr>
-    <td rowspan="2"><a href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td rowspan="2"><a target="_blank" href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
     <td>PredictNLS</td>
     <td>{{item.nls}}</td>
     <td>{{item.prediction}}</td>
@@ -136,7 +136,7 @@
     <th>Domain Map</th>
   </tr>
   <tr ng-model="blast_domains" ng-repeat="(item, value) in blast_domains">
-    <td class="linkify"><a href="{{urlmap(item)}}">{{item}}</a></td>
+    <td class="linkify"><a target="_blank" href="{{urlmap(item)}}">{{item}}</a></td>
     <td>
       <div ng-bind-html="value[1]"></div>
       <img src="http://cas-pogs.uoregon.edu{{value[0]}}" id="{{item}}" />
