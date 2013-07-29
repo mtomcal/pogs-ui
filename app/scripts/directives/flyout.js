@@ -11,7 +11,7 @@ angular.module('pogsUiApp').
   ctrl.setFlyoutBody = function (scope) {
     $scope.flyoutBody = scope;
   }
-
+  
   ctrl.activate = function () {
     $scope.flyout.toggle(true);
     $scope.flyoutBody.toggle(true);
@@ -20,6 +20,8 @@ angular.module('pogsUiApp').
     .one(transitionEnd,   
          function(e) {
            var locationChange = $rootScope.$on('$locationChangeSuccess', function (event, newLoc, oldLoc){
+             angular.element(".navbar").addClass('no-transition');
+             angular.element("footer").addClass('no-transition');
              ctrl.deactivate();
              locationChange();
            });
@@ -61,9 +63,11 @@ angular.module('pogsUiApp').
       scope: {},
       controller: function ($scope, $element) {
         angular.element(".navbar")
+        .removeClass('no-transition')
         .addClass('flyout-body')
         .addClass('out');
         angular.element("footer")
+        .removeClass('no-transition')
         .addClass('flyout-body')
         .addClass('out');
 
