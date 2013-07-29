@@ -1,7 +1,7 @@
 <div class="row-fluid" ng-controller="PogCtrl">
  <flyoutarea>
  <flyout>
-   <h4>Plaza Group {{plazaId}}</h4>
+ <h4><a href="{{BASE_URL}}#/plaza/{{plazaId}}">Plaza Group {{plazaId}}</a></h4>
    <ul>
      <li ng-repeat="result in plazaResults">
      {{result.genemodel}}

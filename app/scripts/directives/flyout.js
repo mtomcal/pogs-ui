@@ -13,9 +13,23 @@ angular.module('pogsUiApp').
   ctrl.activate = function () {
     $scope.flyout.toggle(true);
     $scope.flyoutBody.toggle(true);
+    angular
+    .element(".flyout")
+    .one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',   
+         function(e) {
+           var $ = angular.element;
+           $("body").click('click.flyout', function (e) {
+             if ($(e.target).is($('button#plazaflyout'))){
+               return;
+             };
+             ctrl.deactivate();
+           });
+         });
   };
 
   ctrl.deactivate = function () {
+    angular.element("body").off('.flyout');
+    angular.element(".flyout").off();
     $scope.flyout.toggle(false);
     $scope.flyoutBody.toggle(false);
   };
@@ -32,7 +46,8 @@ angular.module('pogsUiApp').
       controller: 'FlyoutCtrl',
       transclude: true,
       template: '<div ng-transclude></div>',
-      link: function (scope, element, attr) {
+      link: function (scope, element, attr, FlyoutCtrl) {
+
       },
     };
 });
@@ -112,7 +127,7 @@ angular.module('pogsUiApp').
       },
       transclude: true,
       replace: true,
-      template: '<button class="{{style}}" ng-transclude>Plaza</button>',
+      template: '<button id="plazaflyout" class="{{style}}" ng-transclude>Plaza</button>',
       link: function (scope, element, attr, FlyoutCtrl) {
 
         scope.activate = function () {
