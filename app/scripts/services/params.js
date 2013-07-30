@@ -18,6 +18,9 @@ angular.module('pogsUiApp').
       channels[channel] = _.clone(default_params);
     };
     var textfilter = function (term) {
+      if (!term) {
+        return '';
+      }
       term = term + '';
       term = term.toLowerCase();
       term = term.replace(/([\w|\d]+)\s+or\s+/g, "$1 ");
