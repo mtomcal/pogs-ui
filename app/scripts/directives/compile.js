@@ -1,5 +1,5 @@
 angular.module('pogsUiApp')
-  .directive('compile', function () {
+  .directive('compile', function ($compile) {
   return function(scope, element, attrs) {
       scope.$watch(
         function(scope) {
