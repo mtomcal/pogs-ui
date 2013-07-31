@@ -1,5 +1,5 @@
 angular.module("pogsUiApp")
-  .directive("scrollTo", ["$window", function($window){
+  .directive("scrollTo", function($window){
     return {
       restrict : "AC",
       compile : function(){
@@ -32,4 +32,4 @@ angular.module("pogsUiApp")
         };
       }
     };
-}]);
+});
