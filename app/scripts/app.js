@@ -43,6 +43,10 @@ angular.module('pogsUiApp', ['ui', 'ui.bootstrap', 'ngResource', 'ngSanitize'])
         templateUrl: 'views/plaza.html',
         controller: 'PlazaCtrl',
       })
+      .when('/blast', {
+        templateUrl: 'views/blast.html',
+        controller: 'BlastCtrl',
+      })
       .otherwise({
         redirectTo: '/'
       });
