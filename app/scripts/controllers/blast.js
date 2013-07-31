@@ -1,5 +1,5 @@
 angular.module('pogsUiApp')
-.controller('BlastCtrl', function ($scope, $location, Blast, $location, $anchorScroll) {
+.controller('BlastCtrl', function ($scope, Blast) {
   $scope.isCollapsed = true;
   $scope.showResults = false;
   $scope.loader = false;
@@ -27,11 +27,4 @@ angular.module('pogsUiApp')
       $scope.results = data.results;
     });
   };
-
-  $scope.scrollTo = function(id) {
-      console.log('Called');
-      $location.hash(id);
-      $anchorScroll();
-  }
-    
 });
