@@ -1,27 +1,33 @@
 angular.module('pogsUiApp').
-  controller('FlyoutCtrl', function ($scope, $window, $rootScope) {
+  controller('FlyoutCtrl', function ($scope, $rootScope) {
 
   var ctrl = this;
 
   var transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
 
-  ctrl.setFlyout = function (scope) {
-    $scope.flyout = scope;
-  }
-  ctrl.setFlyoutBody = function (scope) {
-    $scope.flyoutBody = scope;
-  }
-  
+  var $nav = angular.element(".navbar");
+  var $footer = angular.element("footer");
+
+  $nav.removeClass('no-transition')
+  $nav.addClass('out');
+  $footer.removeClass('no-transition')
+  $footer.addClass('out');
+
   ctrl.activate = function () {
-    $scope.flyout.toggle(true);
-    $scope.flyoutBody.toggle(true);
+    $nav
+    .removeClass('out')
+    .addClass('flyout-body');
+    $footer
+    .removeClass('out')
+    .addClass('flyout-body');
+
     angular
     .element(".flyout")
     .one(transitionEnd,   
          function(e) {
            var locationChange = $rootScope.$on('$locationChangeSuccess', function (event, newLoc, oldLoc){
-             angular.element(".navbar").addClass('no-transition');
-             angular.element("footer").addClass('no-transition');
+             $nav.addClass('no-transition');
+             $footer.addClass('no-transition');
              ctrl.deactivate();
              locationChange();
            });
@@ -29,12 +35,58 @@ angular.module('pogsUiApp').
   };
 
   ctrl.deactivate = function () {
+    $nav.addClass('out');
+    $footer.addClass('out');
     angular.element("body").off('click');
     angular.element(".flyout").off('click');
-    $scope.flyout.toggle(false);
-    $scope.flyoutBody.toggle(false);
   };
 
+  ctrl.maximize = function () {
+    $nav.addClass('extend');
+    $footer.addClass('extend');
+    angular
+    .element(".flyout")
+    .one(transitionEnd,   
+         function(e) {
+           angular.element(".plaza-tree").addClass('extend');
+         });
+  };
+
+  ctrl.minimize = function () {
+    $nav.removeClass('extend');
+    $footer.removeClass('extend');
+    angular.element(".plaza-tree").removeClass('extend');
+  };
+
+  ctrl.observers = {}
+
+  ctrl.addObs = function (id, obs) {
+    ctrl.observers[id] = obs;
+    obs.task = {
+      activate: false,
+      maximize: false,
+    }
+  }
+
+  ctrl.update = function (task) {
+    _.each(ctrl.observers, function (obs, key) {
+      obs.task = task;
+      obs.update();
+    });
+
+    if (task.activate) {
+      ctrl.activate();
+    } else {
+      ctrl.deactivate();
+      ctrl.minimize();
+    }
+
+    if (task.maximize) {
+      ctrl.maximize();
+    } else {
+      ctrl.minimize();
+    }
+  }
 
 });
 
@@ -61,31 +113,25 @@ angular.module('pogsUiApp').
       transclude: true,
       replace: true,
       scope: {},
-      controller: function ($scope, $element) {
-        angular.element(".navbar")
-        .removeClass('no-transition')
-        .addClass('flyout-body')
-        .addClass('out');
-        angular.element("footer")
-        .removeClass('no-transition')
-        .addClass('flyout-body')
-        .addClass('out');
-
-        $scope.toggle = function (show) {
-          if (show) {
-            angular.element(".navbar").removeClass('out');
-            angular.element("footer").removeClass('out');
-            $element.removeClass('out');
-            return;
-          }
-          $element.addClass('out');
-          angular.element(".navbar").addClass('out');
-          angular.element("footer").addClass('out');
-        }
-      },
       template: '<div class="flyout-body out" ng-transclude></div>',
       link: function (scope, element, attr, FlyoutCtrl) {
-        FlyoutCtrl.setFlyoutBody(scope);
+        scope.task = {}
+        FlyoutCtrl.addObs("body", scope);
+
+        scope.update = function () {
+          if (scope.task.activate) {
+            element.removeClass('out');
+          } else {
+            element.addClass('out');
+          }
+
+          if (scope.task.maximize) {
+            element.addClass('extend');
+          } else {
+            element.removeClass('extend');
+          }
+        }
+
       },
     };
 });
@@ -97,23 +143,40 @@ angular.module('pogsUiApp').
       restrict: 'E',
       transclude: true,
       scope: {},
-      controller: function ($scope, $element) {
-        $scope.show = false;
-        $scope.toggle = function (show) {
-          if (show) {
-            $element.find('.flyout').removeClass("out");
-            return;
-          }
-          $element.find('.flyout').addClass("out");
-          //$scope.$apply();
-        }
-      },
-      template: '<div class="flyout out"><div class="content" ng-transclude><a ng-click="close()" href="">Close</a></div></div>',
+      template: '<div class="flyout out"><div class="content"><a ng-click="close()" href="">Close</a><div ng-transclude></div><button ng-click="maximize()" class="btn btn-primary btn-mini">Plaza Cladogram</button></div></div>',
       link: function (scope, element, attr, FlyoutCtrl) {
+        scope.task = {}
+
+        FlyoutCtrl.addObs("flyout", scope);
+
+        scope.maximize = function () {
+          FlyoutCtrl.update({
+            activate: true,
+            maximize: true,
+          });
+        }
+
+        scope.update = function () {
+          if (scope.task.activate) {
+            element.find('.flyout').removeClass("out");
+          } else {
+            element.find('.flyout').addClass("out");
+          }
+
+          if (scope.task.maximize) {
+            element.find('.flyout').addClass("extend");
+          } else {
+            element.find('.flyout').removeClass("extend");
+          }
+        }
+
         scope.close = function () {
-          FlyoutCtrl.deactivate();
+          FlyoutCtrl.update({
+            activate: false,
+            maximize: false,
+          });
         };
-        FlyoutCtrl.setFlyout(scope);
+
       },
     };
 });
@@ -133,11 +196,11 @@ angular.module('pogsUiApp').
       template: '<button id="plazaflyout" class="{{style}}" ng-transclude>Plaza</button>',
       link: function (scope, element, attr, FlyoutCtrl) {
 
-        scope.activate = function () {
-          FlyoutCtrl.activate();
-        }
         element.bind('click', function () {
-          scope.activate();
+          FlyoutCtrl.update({
+            activate: true,
+            maximize: false,
+          });
           scope.callback({gene: scope.gene});
         });
       },

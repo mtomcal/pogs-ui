@@ -1,12 +1,16 @@
 <div class="row-fluid" ng-controller="PogCtrl">
  <flyoutarea>
  <flyout>
+  <div class="plaza-tree">
+   <treerender divid="plaza" genemodels="plazaResults" tree="plazaTreeData" url="BASE_URL" pogid="plazaId"></treerender>
+ </div>
  <h4><a href="{{BASE_URL}}#/plaza/{{plazaId}}">Plaza Group {{plazaId}}</a></h4>
    <ul>
      <li ng-repeat="result in plazaResults">
-     {{result.genemodel}}
+     {{result}}
      </li>
    </ul>
+
  </flyout> 
  <flyoutbody>
 <h2>Gramene Orthologous Group {{id}}</h2>
@@ -122,8 +126,8 @@
 <h3>Cladogram of Closely Related Proteins</h3>
 <tabset>
 <tab heading="Cladogram">
-<small><p>Asterisks (*) mark members of this POG</p></small>
-<div id="svgCanvas"></div>
+
+<treerender divid="pog" genemodels="genemodels" tree="treeData" url="BASE_URL" pogid="id"></treerender>
 
 <div class="row-fluid"></div>
 </tab>

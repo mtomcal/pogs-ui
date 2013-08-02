@@ -11,8 +11,14 @@
   left: 0;
   max-width: none;
   overflow: hidden;
+  overflow-y: scroll;
   color: white;
   background-color: #1b1b1b;
+}
+
+.flyout.extend {
+  width: 100%;
+  z-index: 100;
 }
 
 .flyout.out {
@@ -20,10 +26,26 @@
 }
 
 .flyout .content {
+  width: 100%;
   position: relative;
   padding: 1.0em;
 }
 
+.plaza-tree {
+  width: 70em;
+  float: right;
+  margin: 0 10em;
+  display: none;
+  -webkit-transition: all 0.3s ease-in;  
+  -moz-transition: all 0.3s ease-in;
+  -ms-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+.plaza-tree.extend {
+  display: inline;
+}
 
 .flyout-body {
   position: relative;
@@ -35,6 +57,10 @@
   margin-left: 16em;
   max-height: 100%;
   width: auto;
+}
+
+.flyout-body.extend {
+  display: none;
 }
 
 .flyout-body.out {

@@ -7353,22 +7353,48 @@ FONT.T66 {
   left: 0;
   max-width: none;
   overflow: hidden;
+  overflow-y: scroll;
   color: white;
   background-color: #1b1b1b;
 }
 
-/* line 18, _flyout.scss */
+/* line 19, _flyout.scss */
+.flyout.extend {
+  width: 100%;
+  z-index: 100;
+}
+
+/* line 24, _flyout.scss */
 .flyout.out {
   left: -16em;
 }
 
-/* line 22, _flyout.scss */
+/* line 28, _flyout.scss */
 .flyout .content {
+  width: 100%;
   position: relative;
   padding: 1.0em;
 }
 
-/* line 28, _flyout.scss */
+/* line 34, _flyout.scss */
+.plaza-tree {
+  width: 70em;
+  float: right;
+  margin: 0 10em;
+  display: none;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -ms-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+/* line 46, _flyout.scss */
+.plaza-tree.extend {
+  display: inline;
+}
+
+/* line 50, _flyout.scss */
 .flyout-body {
   position: relative;
   -webkit-transition: all 0.3s ease-in-out;
@@ -7381,12 +7407,17 @@ FONT.T66 {
   width: auto;
 }
 
-/* line 40, _flyout.scss */
+/* line 62, _flyout.scss */
+.flyout-body.extend {
+  display: none;
+}
+
+/* line 66, _flyout.scss */
 .flyout-body.out {
   margin-left: 0;
 }
 
-/* line 44, _flyout.scss */
+/* line 70, _flyout.scss */
 .no-transition {
   -moz-transition: none;
   -webkit-transition: none;

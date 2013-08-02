@@ -1,11 +1,14 @@
 'use strict';
 
 angular.module('pogsUiApp')
-  .controller('PogCtrl', function ($scope, $location, $routeParams, BASE_URL, Pog, Domains, BlastDomains, Predotar, Targetp, Prednls, Ppdb, Nucpred, Tree, Plaza, Search) {
+  .controller('PogCtrl', function ($scope, $location, $routeParams, $q, BASE_URL, Pog, Domains, BlastDomains, Predotar, Targetp, Prednls, Ppdb, Nucpred, Tree, Plaza, Search) {
 
 
+    window.myscope = $scope;
     $scope.BASE_URL = BASE_URL;
-
+    $scope.plazaResults = [];
+    $scope.plazaId = 0;
+    $scope.plazaTreeData = {};
     $scope.loadedBlast = false;
     $scope.loadedOrtho = false;
     $scope.loadedGroup = false;
@@ -73,58 +76,15 @@ angular.module('pogsUiApp')
       }
     };
 
-    var processTree = function (tree, cb) {
-      var urlBase = $scope.BASE_URL;
-      var $xml = angular.element(tree);
-      if (!$scope.loadedGroup) {
-        cb(false);
-        return;
-      }
-      var changeLength = function () {
-        return $xml.find('branch_length').each(function() {
-          angular.element(this).text('1');
-        }).promise();
-      }
-      var changeAnnotation = function() {
-        return $xml.find('name').each(function() {
-          if (_.include($scope.genemodels, angular.element(this).text())) {
-            var old_value = angular.element(this).text();
-            angular.element(this).text(old_value + "*");
-          } else {
-            var addition = angular.element('<annotation><desc>Click to Search For ' + angular.element(this).text() + ' POG</desc><uri>'+ urlBase +'#/search/genemodel/' + angular.element(this).text() + '</uri></annotation>');
-            angular.element(this).parent().append(addition);
-          }
-        }).promise();
-      }
-      angular.element
-      .when(changeLength(), changeAnnotation())
-      .done(cb($xml[2].outerHTML));
-    }
-
-    $scope.loadTree = function(tree) {
-      processTree(tree[$routeParams.id], function (tree){
-        var dataObject = {
-          phyloxml: tree,
-          fileSource: false 
-        }
-        angular.element('#svgCanvas').html("");
-        new Smits.PhyloCanvas(dataObject,'svgCanvas',1000,1000);
-        angular.element('#svgCanvas > svg').attr('height', '1100');
-      });
-    };
-
-
     $scope.$on('loadedGroup', function () {
       Tree.query({id: $routeParams.id}, function(tree) {
-        $scope.loadTree(tree);
+        $scope.treeData = tree;
       });
     });
 
-    $scope.plazaResults = [];
-    $scope.plazaId = 0;
+
 
     $scope.fetchPlaza = function (gene) {
-      console.log(gene)
       var search = Search.query({
         page: '1', 
         gene: '',
@@ -138,14 +98,28 @@ angular.module('pogsUiApp')
         ppdb: '',
         pogMethod: 'plaza_groups',
       }, function(data) {
+        var deferred = $q.defer();
         var key = Object.keys(data.results);
         $scope.plazaId = key[0];
         Plaza.query({id: key[0]}, function (plaza) {
-          $scope.plazaResults = plaza.locus;
-        });
+          var results = [] 
+          _.each(plaza.locus, function(val, key) {
+            results.push(val.genemodel);
+          });
+          $scope.plazaResults = angular.copy(results);
+          console.log($scope.plazaId)
+          console.log($scope.plazaResults);
+          $scope.$broadcast('loadedPlazaData');
+        })
       });
-
     }
+
+    $scope.$on('loadedPlazaData', function () {
+      Tree.query({id: $scope.plazaId, method: 'plaza'}, function (data) {
+          console.log(data);
+          $scope.plazaTreeData = data;
+        });
+    });
 
     $scope.prednls = Prednls.query({id: $routeParams.id});
     $scope.nucpred = Nucpred.query({id: $routeParams.id});
