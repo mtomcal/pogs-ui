@@ -73,7 +73,6 @@ angular.module('pogsUiApp').
       obs.task = task;
       obs.update();
     });
-
     if (task.activate) {
       ctrl.activate();
     } else {
@@ -137,7 +136,7 @@ angular.module('pogsUiApp').
 });
 
 angular.module('pogsUiApp').
-  directive('flyout', function(){
+  directive('flyout', function($rootScope){
     return {
       require: '^flyoutarea',
       restrict: 'E',
@@ -154,6 +153,7 @@ angular.module('pogsUiApp').
             activate: true,
             maximize: true,
           });
+          $rootScope.$broadcast('Flyout:overlay:redraw');
         }
 
         scope.update = function () {
@@ -175,6 +175,7 @@ angular.module('pogsUiApp').
             activate: false,
             maximize: false,
           });
+          $rootScope.$broadcast('Flyout:redraw');
         };
 
       },

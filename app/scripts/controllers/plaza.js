@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('pogsUiApp')
-  .controller('PlazaCtrl', function ($scope, $location, $routeParams, Plaza) {
-
+  .controller('PlazaCtrl', function ($scope, $location, $routeParams, Plaza, Tree) {
+    $scope.plazaResults = [];
+    $scope.plazaTreeData = {};
     $scope.loadedBlast = false;
     $scope.loadedOrtho = false;
     $scope.loadedGroup = false;
@@ -41,6 +42,13 @@ angular.module('pogsUiApp')
         });
       $scope.loadedGroup = true;
       $scope.$broadcast('loadedGroup');
+    });
+
+
+    $scope.$on('loadedGroup', function () {
+      Tree.query({id: $scope.id, method: 'plaza'}, function (data) {
+          $scope.plazaTreeData = data;
+        });
     });
 
   });

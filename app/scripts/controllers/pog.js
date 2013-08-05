@@ -107,8 +107,6 @@ angular.module('pogsUiApp')
             results.push(val.genemodel);
           });
           $scope.plazaResults = angular.copy(results);
-          console.log($scope.plazaId)
-          console.log($scope.plazaResults);
           $scope.$broadcast('loadedPlazaData');
         })
       });
@@ -116,7 +114,6 @@ angular.module('pogsUiApp')
 
     $scope.$on('loadedPlazaData', function () {
       Tree.query({id: $scope.plazaId, method: 'plaza'}, function (data) {
-          console.log(data);
           $scope.plazaTreeData = data;
         });
     });
