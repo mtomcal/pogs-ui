@@ -2,7 +2,9 @@
  <flyoutarea>
  <flyout>
   <div class="plaza-tree">
-   <treerender divid="plaza" genemodels="plazaResults" tree="plazaTreeData" url="BASE_URL" pogid="plazaId"></treerender>
+   <treerender divid="plaza" color="rgb(255,255,255)" genemodels="plazaResults" tree="plazaTreeData" url="BASE_URL" pogid="plazaId" height="1000" width="900" dy="5">
+   <div id="phylo_plaza"></div>
+   </treerender>
  </div>
  <h4><a href="{{BASE_URL}}#/plaza/{{plazaId}}">Plaza Group {{plazaId}}</a></h4>
    <ul>
@@ -127,7 +129,9 @@
 <tabset>
 <tab heading="Cladogram">
 
-<treerender divid="pog" genemodels="genemodels" tree="treeData" url="BASE_URL" pogid="id"></treerender>
+<treerender divid="pog" color="rgb(0,0,0)" genemodels="genemodels" tree="treeData" height="1000" width="1000" url="BASE_URL" pogid="id">
+<div id="phylo_pog"></div>
+</treerender>
 
 <div class="row-fluid"></div>
 </tab>

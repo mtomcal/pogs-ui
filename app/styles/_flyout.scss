@@ -32,15 +32,11 @@
 }
 
 .plaza-tree {
-  width: 70em;
+  width: 1000px;
   float: right;
-  margin: 0 10em;
+  //margin: 0 10em;
   display: none;
-  -webkit-transition: all 0.3s ease-in;  
-  -moz-transition: all 0.3s ease-in;
-  -ms-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
+  overflow: hidden;
 }
 
 .plaza-tree.extend {

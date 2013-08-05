@@ -8,8 +8,13 @@ angular.module('pogsUiApp').
         url: '=',
         pogid: '=',
         divid: '@',
+        color: '@',
+        height: '@',
+        width: '@',
+        dy: '@',
       },
-      template: '<small><p>Asterisks (*) mark members of this POG</p></small><div id="{{divId}}"></div>',
+      transclude: true,
+      template: '<small><p>Asterisks (*) mark members of this POG</p></small><div ng-transclude></div>',
       link: function (scope, element, attr) {
         
         var processTree = function (tree, cb) {
@@ -45,8 +50,28 @@ angular.module('pogsUiApp').
                 fileSource: false 
               }
               angular.element('#phylo_' + scope.divid).html("");
-              new Smits.PhyloCanvas(dataObject,'phylo_' + scope.divid,1000,1000);
-              angular.element('#phylo_' + scope.divid + '> svg').attr('height', '1100');
+              var elem = angular.element('#phylo_' + scope.divid);
+              Smits.PhyloCanvas.Render.Style.line.stroke = scope.color;
+              Smits.PhyloCanvas.Render.Style.text.fill = scope.color;
+              Smits.PhyloCanvas.Render.Style.text.highlight = scope.color;
+              Smits.PhyloCanvas.Render.Style.text["font-size"] = 12;
+              new Smits.PhyloCanvas(dataObject,'phylo_' + scope.divid,parseInt(scope.width),parseInt(scope.height));
+              angular.element('#phylo_' + scope.divid + '> svg').attr('height', parseInt(scope.height) + 100);
+              if (typeof scope.dy != "undefined") {
+                var $ = angular.element;
+
+                var unWatcher = scope.$watch(
+                  function() {
+                    return $('tspan').length != 0;
+                  },
+                  function() {
+
+                    angular.element('tspan').attr('dy', '5');             
+
+                    unWatcher();
+                  }
+               , true);
+              }
             });
           }
         });

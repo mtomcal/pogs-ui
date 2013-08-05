@@ -1004,7 +1004,8 @@ Smits.PhyloCanvas.NexmlParse.prototype = {
 	text: {
 		"font-family":	'Verdana',
 		"font-size":	12,
-		"text-anchor":	'start'
+		"text-anchor":	'start',
+    "highlight": '#000',
 	},
 	
 	path: {
@@ -1123,7 +1124,7 @@ Smits.PhyloCanvas.NexmlParse.prototype = {
 		},
 		mouseRollOut : function(params) {
 			params.node.edgeCircleHighlight.hide();
-			params.textEl.attr({ fill: '#000' });
+			params.textEl.attr({fill: Smits.PhyloCanvas.Render.Style.text.highlight});
 		},
 
 	set : function(param, value, treeType){
