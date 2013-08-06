@@ -55,4 +55,4 @@ angular.module('pogsUiApp', ['ui', 'ui.bootstrap', 'ngResource', 'ngSanitize'])
         redirectTo: '/'
       });
   });
-angular.module('pogsUiApp').constant('BASE_URL', '/');
+angular.module('pogsUiApp').constant('BASE_URL', '/ui/');
