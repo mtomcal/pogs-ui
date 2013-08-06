@@ -87,6 +87,16 @@ angular.module('pogsUiApp').
     }
   }
 
+  $rootScope.$on('loadedPlazaPage', function () {
+    ctrl.deactivate();
+    ctrl.minimize();
+  });
+  
+  $rootScope.$on('loadedPogPage', function () {
+    ctrl.deactivate();
+    ctrl.minimize();
+  });
+
 });
 
 

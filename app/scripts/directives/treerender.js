@@ -13,6 +13,7 @@ angular.module('pogsUiApp').
         width: '@',
         dy: '@',
         padding: '@',
+        method: '@',
       },
       transclude: true,
       template: '<small><p>Asterisks (*) mark members of this POG</p></small><div ng-transclude></div>',
@@ -32,7 +33,11 @@ angular.module('pogsUiApp').
                 var old_value = angular.element(this).text();
                 angular.element(this).text(old_value + "*");
               } else {
-                var addition = angular.element('<annotation><desc>Click to Search For ' + angular.element(this).text() + ' POG</desc><uri>'+ urlBase +'#/search/genemodel/' + angular.element(this).text() + '</uri></annotation>');
+                var search_method = "/";
+                if (typeof scope.method != "undefined") {
+                  search_method = "/" + scope.method + "/";
+                }
+                var addition = angular.element('<annotation><desc>Click to Search For ' + angular.element(this).text() + ' POG</desc><uri>'+ urlBase +'#/search' + search_method + 'genemodel/' + angular.element(this).text() + '</uri></annotation>');
                 angular.element(this).parent().append(addition);
               }
             }).promise();
@@ -47,7 +52,7 @@ angular.module('pogsUiApp').
           } else {
             scope.padding = parseInt(scope.padding);
           }
-          if (scope.genemodels.length > 1 && typeof scope.tree[scope.pogid] != 'undefined') {
+          if (scope.genemodels.length > 0 && typeof scope.tree[scope.pogid] != 'undefined') {
             processTree(scope.tree[scope.pogid], function (tree) {
               scope.divId = 'phylo_' + scope.divid;
               var dataObject = {

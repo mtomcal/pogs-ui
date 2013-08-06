@@ -27,6 +27,10 @@ angular.module('pogsUiApp', ['ui', 'ui.bootstrap', 'ngResource', 'ngSanitize'])
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl',
       })
+      .when('/search/:method/genemodel/:genemodel', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl',
+      })
       .when('/genesearch', {
         templateUrl: 'views/genesearch.html',
         controller: 'SearchCtrl',
@@ -51,4 +55,4 @@ angular.module('pogsUiApp', ['ui', 'ui.bootstrap', 'ngResource', 'ngSanitize'])
         redirectTo: '/'
       });
   });
-angular.module('pogsUiApp').constant('BASE_URL', '/ui/');
+angular.module('pogsUiApp').constant('BASE_URL', '/');

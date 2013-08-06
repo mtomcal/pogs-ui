@@ -19,6 +19,8 @@ angular.module('pogsUiApp')
     $scope.datatype = 'fasta';
     $scope.flyout = false;
 
+    $scope.$root.$broadcast('loadedPogPage');
+
     $scope.dataSubmit = function (dataset, datatype) {
       $location.path('/mart/' + $scope.id + '/' + datatype + '/' + dataset);
     };

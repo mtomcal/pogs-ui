@@ -93,8 +93,8 @@ angular.module('pogsUiApp')
       $scope.pogSearch.ppdbTarget = '';
     });
 
+    Params.clear('pogSearch');
     $scope.pogSearchSubmit = function() {
-      Params.clear('pogSearch');
       Params.set('pogSearch', {
         gene: $scope.pogSearch.gene,
         tid: $scope.pogSearch.tid,
@@ -110,8 +110,8 @@ angular.module('pogsUiApp')
 
       $location.path('/search');
     }
+    Params.clear('pogSearch');
     $scope.geneSearchSubmit = function() {
-      Params.clear('geneSearch');
       Params.set('geneSearch', {
         gene: $scope.geneSearch.gene,
         tid: $scope.geneSearch.tid,

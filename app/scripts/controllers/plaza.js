@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pogsUiApp')
-  .controller('PlazaCtrl', function ($scope, $location, $routeParams, Plaza, Tree) {
+  .controller('PlazaCtrl', function ($scope, $location, $routeParams, Plaza, Tree, BASE_URL) {
     $scope.plazaResults = [];
     $scope.plazaTreeData = {};
     $scope.loadedBlast = false;
@@ -10,6 +10,9 @@ angular.module('pogsUiApp')
     $scope.loadedTree = false;
     $scope.genemodels = [];
     $scope.id = $routeParams.id;
+    $scope.BASE_URL = BASE_URL;
+
+    $scope.$root.$broadcast('loadedPlazaPage');
 
     $scope.urlmap = function(genemodel) {
       var _link = "";

@@ -5,23 +5,23 @@ angular.module('pogsUiApp')
 
     $scope.BASE_URL = BASE_URL;
 
-    $scope.$root.$on('Params:set', function () {
-      $scope.results = $scope.resolveSearch();
-    });
-
     var searchChannel = 'pogSearch';
 
     var genemodel = function ($routeParams) {
       if (!$routeParams.genemodel) {
         return;
       }
+      var method = "groups";
+      searchChannel = 'genemodel';
+      if ($routeParams.method == 'plaza') {
+        method = $routeParams.method + "_groups";
+      }
       Params.clear('genemodel');
       Params.set('genemodel', {
         tid: $routeParams.genemodel,
-        pogMethod: 'groups',
+        pogMethod: method,
         type: 'byPOG',
       });
-      searchChannel = 'genemodel';
     }
 
     genemodel($routeParams);
@@ -56,7 +56,6 @@ angular.module('pogsUiApp')
           } else {
             $location.path('/pog/'+keys[0]);
           }
-          Params.clear(searchChannel);
           return;
         }
         $scope.loader = false;

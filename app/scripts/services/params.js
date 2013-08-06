@@ -31,7 +31,7 @@ angular.module('pogsUiApp').
       return term;
     };
     return {
-      set: function (channel, value) {
+      set: function (channel, value, broadcast) {
         clear(channel);
         _.each(value, function (val, key) {
           if (key == 'domain') {
@@ -40,6 +40,9 @@ angular.module('pogsUiApp').
           value[key] = val || '';
         });
         _.extend(channels[channel], value);
+        if (broadcast == false) {
+          return;
+        }
         $rootScope.$broadcast('Params:set');
       },
       get: function (channel) {
