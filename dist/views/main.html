@@ -7,15 +7,19 @@
 <div class="row-fluid">
 <div class="clearfix"></div>
 <form class="form">
+  
   <div class="control-group">
     <label class="control-label" for="orthology"><b>Orthology Prediction Method</b></label>
+    <small><p>*Primary orthology prediction method. <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#98;&#97;&#114;&#107;&#97;&#110;&#64;&#109;&#111;&#108;&#98;&#105;&#111;&#46;&#117;&#111;&#114;&#101;&#103;&#111;&#110;&#46;&#101;&#100;&#117;">Request Additional Orthology Predictions</a></p></small>
     <div class="controls">
       <div id="orthology" class="btn-group">
-        <button type="button" class="btn btn-small btn-success" ng-model="pogSearch.pogMethod" btn-radio="'groups'">Gramene</button>
+        
+        <button type="button" class="btn btn-small btn-success" ng-model="pogSearch.pogMethod" btn-radio="'groups'">Gramene*</button>
         <button type="button" class="btn btn-small btn-success" ng-model="pogSearch.pogMethod" btn-radio="'plaza_groups'">Plaza</button>
       </div>
     </div>
   </div>
+    
   <div class="control-group">
     <label class="control-label" for="gene"><b>Gene Search</b></label>
     <div class="controls">
@@ -85,7 +89,7 @@
 <h3>Description</h3>
 <br>
 <p>
-POGs 2.0 Beta, is a relational database designed to facilitate cross-species inferences about gene functions and gene models in plants.  The database integrates data from rice (<i>Orza sativa</i>), maize (<i>Zea mays</i>), <i>Arabidopsis thaliana</i>, and Poplar (<i>Populus trichocarpa</i>) by placing the complete predicted proteomes into "putative orthologous groups" (POGs). POGs were imported from Gramene’s <a href="http://www.gramene.org/info/docs/compara/homology_method.html">ENSEMBL orthology prediction output</a>.
+POGs 2.0, is a relational database designed to facilitate cross-species inferences about gene functions and gene models in plants.  The database integrates data from rice (<i>Orza sativa</i>), maize (<i>Zea mays</i>), <i>Arabidopsis thaliana</i>, and Poplar (<i>Populus trichocarpa</i>) by placing the complete predicted proteomes into "putative orthologous groups" (POGs). POGs were imported from Gramene’s <a href="http://www.gramene.org/info/docs/compara/homology_method.html">ENSEMBL orthology prediction output</a> and Plaza's <a href="http://bioinformatics.psb.ugent.be/knowledge/wiki-plaza/construction">Orthology Prediction Method</a>.
 </p>
 <p>
 Each POG entry includes putative orthologs annotated with gene descriptions imported from species-specific databases, graphical representations of conserved protein domains, phylogenetic trees showing closely-related proteins, intracellular targeting predictions and verified targeting data from <a tooltip="Plant Proteome Database (Cornell)" href="http://ppdb.tc.cornell.edu/">PPDB</a>. The database can be queried by Interpro domain keyword or ID, genemodel or transcript accessions, known or predicted intracellular location, or any combination of the above.
