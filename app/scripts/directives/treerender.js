@@ -14,6 +14,7 @@ angular.module('pogsUiApp').
         dy: '@',
         padding: '@',
         method: '@',
+        lazy: '@',
       },
       transclude: true,
       template: '<small><p>Asterisks (*) mark members of this POG</p></small><div ng-transclude></div>',
@@ -46,6 +47,18 @@ angular.module('pogsUiApp').
           .when(changeLength(), changeAnnotation())
           .done(cb($xml[2].outerHTML));
         }
+
+      var redraw = function (divid) {
+        if (scope.divid == divid) {
+          Smits.PhyloCanvas.Render.Style.line.stroke = scope.color;
+          Smits.PhyloCanvas.Render.Style.text.fill = scope.color;
+          Smits.PhyloCanvas.Render.Style.text.highlight = scope.color;
+          Smits.PhyloCanvas.Render.Style.text["font-size"] = 12;
+          if (scope.lazy == 'true') {
+            draw();
+          }
+        }
+      }
       var draw = function () {
           if (typeof scope.padding == 'undefined') {
             scope.padding = 100;
@@ -61,10 +74,6 @@ angular.module('pogsUiApp').
               }
               angular.element('#phylo_' + scope.divid).html("");
               var elem = angular.element('#phylo_' + scope.divid);
-              Smits.PhyloCanvas.Render.Style.line.stroke = scope.color;
-              Smits.PhyloCanvas.Render.Style.text.fill = scope.color;
-              Smits.PhyloCanvas.Render.Style.text.highlight = scope.color;
-              Smits.PhyloCanvas.Render.Style.text["font-size"] = 12;
               var render = new Smits.PhyloCanvas(dataObject,'phylo_' + scope.divid,parseInt(scope.width),parseInt(scope.height));
               angular.element('#phylo_' + scope.divid + '> svg').attr('height', parseInt(scope.height) + scope.padding);
               if (typeof scope.dy != "undefined") {
@@ -85,22 +94,14 @@ angular.module('pogsUiApp').
             });
           }
         }
-        scope.$watch('tree', draw);
+        if (scope.lazy != 'true') {
+          scope.$watch('tree', draw);
+        }
         $rootScope.$on('Flyout:redraw', function () {
-          if (scope.divid == 'pog') {
-            Smits.PhyloCanvas.Render.Style.line.stroke = scope.color;
-            Smits.PhyloCanvas.Render.Style.text.fill = scope.color;
-            Smits.PhyloCanvas.Render.Style.text.highlight = scope.color;
-            Smits.PhyloCanvas.Render.Style.text["font-size"] = 12;
-          }
+          redraw("pog");
         });
         $rootScope.$on('Flyout:overlay:redraw', function () {
-          if (scope.divid == 'plaza') {
-            Smits.PhyloCanvas.Render.Style.line.stroke = scope.color;
-            Smits.PhyloCanvas.Render.Style.text.fill = scope.color;
-            Smits.PhyloCanvas.Render.Style.text.highlight = scope.color;
-            Smits.PhyloCanvas.Render.Style.text["font-size"] = 12;
-          }
+          redraw('plaza');
         });
       },
     };

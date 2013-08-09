@@ -1,5 +1,6 @@
 angular.module('pogsUiApp').
   controller('FlyoutCtrl', function ($scope, $rootScope) {
+  window.myscope = $rootScope;
 
   var ctrl = this;
 
@@ -50,12 +51,15 @@ angular.module('pogsUiApp').
          function(e) {
            angular.element(".plaza-tree").addClass('extend');
          });
+    $rootScope.$broadcast('Flyout:overlay:redraw');
+
   };
 
   ctrl.minimize = function () {
     $nav.removeClass('extend');
     $footer.removeClass('extend');
     angular.element(".plaza-tree").removeClass('extend');
+    $rootScope.$broadcast('Flyout:redraw');
   };
 
   ctrl.observers = {}
@@ -163,7 +167,6 @@ angular.module('pogsUiApp').
             activate: true,
             maximize: true,
           });
-          $rootScope.$broadcast('Flyout:overlay:redraw');
         }
 
         scope.update = function () {
@@ -185,7 +188,7 @@ angular.module('pogsUiApp').
             activate: false,
             maximize: false,
           });
-          $rootScope.$broadcast('Flyout:redraw');
+          
         };
 
       },
