@@ -42,9 +42,7 @@
   </tr>
   <tr ng-model="domains" ng-repeat="(item, value) in domains">
     <td class="linkify"><a target="_blank" href="{{urlmap(item)}}">{{item}}</a></td>
-    <td>
-      <div ng-bind-html="value[1]"></div>
-      <img src="http://cas-pogs.uoregon.edu{{value[0]}}" id="{{item}}" />
+    <td ng-bind-html-unsafe="value">
     </td>
   </tr>
 </table>

@@ -61,18 +61,39 @@ angular.module('pogsUiApp')
     });
 
     $scope.domains = Domains.query({id: $routeParams.id}, function (data) {
+      
+      var unwatch = $scope.$watch(
+        function() {
+        return angular.element('area').length != 0;
+      },
+      function () {
+        if (angular.element('area').length > 0) {
+          angular.element('area').qtip({
+            content: function () {
+              return angular.element(this).attr('alt');
+            },
+            position: {
+              my: 'top left',
+              at: 'bottom right',
+            }
+          });
+          unwatch();
+        }
+
+      }, true);
       $scope.loadedOrtho = true;
-      WZ_Tooltip();
       return data;
     });
 
     $scope.blast_domains = {};
-
-    
+ 
   
     $scope.loadBlastDomains = function () {
       if ($scope.loadedBlast == false) {
         $scope.blast_domains = BlastDomains.query({id: $routeParams.id}, function () {
+
+
+
           $scope.loadedBlast = true;
         });
       }
