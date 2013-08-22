@@ -60,15 +60,14 @@ angular.module('pogsUiApp')
       $scope.$broadcast('loadedGroup');
     });
 
-    $scope.domains = Domains.query({id: $routeParams.id}, function (data) {
-      
+    var qtipWatcher = function (css) {
       var unwatch = $scope.$watch(
         function() {
-        return angular.element('area').length != 0;
+        return angular.element(css + ' area').length != 0;
       },
       function () {
-        if (angular.element('area').length > 0) {
-          angular.element('area').qtip({
+        if (angular.element(css + ' area').length > 0) {
+          angular.element(css + ' area').qtip({
             content: function () {
               return angular.element(this).attr('alt');
             },
@@ -81,19 +80,23 @@ angular.module('pogsUiApp')
         }
 
       }, true);
+    }
+
+    $scope.domains = Domains.query({id: $routeParams.id}, function (data) {
+      qtipWatcher(".pog-domains");
       $scope.loadedOrtho = true;
       return data;
     });
 
     $scope.blast_domains = {};
+
+    window.qtipWatcher = qtipWatcher;
  
   
     $scope.loadBlastDomains = function () {
       if ($scope.loadedBlast == false) {
         $scope.blast_domains = BlastDomains.query({id: $routeParams.id}, function () {
-
-
-
+          qtipWatcher(".blast-domains");
           $scope.loadedBlast = true;
         });
       }

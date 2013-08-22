@@ -33,6 +33,10 @@
   </tr>
   
 </table>
+<button type="button" class="btn btn-secondary" ng-click="dataSubmit('groups', 'fasta')">Sequences of POG members</button>
+  <button type="button" class="btn btn-secondary" ng-click="dataSubmit('groups', 'align')">Alignment of POG members</button>
+  <br>
+  <br>
 <h3>Domain Architecture of POG Members</h3>
 <center><img ng-show="!loadedOrtho" width="25" height="25" src="images/ajax-loader.gif"></center>
 <table ng-hide="!loadedOrtho" class="domain-maps table table-bordered">
@@ -42,7 +46,7 @@
   </tr>
   <tr ng-model="domains" ng-repeat="(item, value) in domains">
     <td class="linkify"><a target="_blank" href="{{urlmap(item)}}">{{item}}</a></td>
-    <td ng-bind-html-unsafe="value">
+    <td class="pog-domains" ng-bind-html-unsafe="value">
     </td>
   </tr>
 </table>
@@ -123,7 +127,7 @@
 </tab>
 </tabset>
 
-<h3>Closely Related Proteins: Cladogram and Domain Architectures</h3>
+<h3>Closely Related Proteins</h3>
 <tabset>
 <tab heading="Cladogram">
 
@@ -143,25 +147,16 @@
   </tr>
   <tr ng-model="blast_domains" ng-repeat="(item, value) in blast_domains">
     <td class="linkify"><a target="_blank" href="{{urlmap(item)}}">{{item}}</a></td>
-    <td>
-      <div ng-bind-html="value[1]"></div>
-      <img src="http://cas-pogs.uoregon.edu{{value[0]}}" id="{{item}}">
+    <td class="blast-domains" ng-bind-html-unsafe="value">
     </td>
   </tr>
 </table>
+
 </tab>
 
 </tabset>
-
-
-<h3>Data Mart</h3>
-
-  <button type="button" class="btn btn-success" ng-click="dataSubmit('groups', 'fasta')">Sequences of POG members</button>
-  <button type="button" class="btn btn-success" ng-click="dataSubmit('groups', 'align')">Alignment of POG members</button>
-  <button type="button" class="btn btn-success" ng-click="dataSubmit('blast', 'fasta')">Sequences of Closely Related Proteins</button>
-  <button type="button" class="btn btn-success" ng-click="dataSubmit('blast', 'align')">Alignment of Closely Related Proteins</button>
-<br>
-<br>
+  <button type="button" class="btn btn-secondary" ng-click="dataSubmit('blast', 'fasta')">Sequences of Closely Related Proteins</button>
+  <button type="button" class="btn btn-secondary" ng-click="dataSubmit('blast', 'align')">Alignment of Closely Related Proteins</button>
 
  </flyoutbody></flyoutarea></div>
 
