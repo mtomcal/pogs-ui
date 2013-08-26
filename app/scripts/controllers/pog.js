@@ -18,6 +18,18 @@ angular.module('pogsUiApp')
     $scope.dataset = 'blast';
     $scope.datatype = 'fasta';
     $scope.flyout = false;
+    $scope.specieskey = {
+      "0": "Zea_mays",
+      "1": "Arabidopsis_thaliana",
+      "2": "Populus_trichocarpa",
+      "3": "Oryza_sativa",
+    }
+    $scope.speciesprefix = function (organism_id) {
+      if (organism_id == "3") {
+        return "LOC_";
+      }
+      return "";
+    }
 
     $scope.$root.$broadcast('loadedPogPage');
 
@@ -90,8 +102,6 @@ angular.module('pogsUiApp')
 
     $scope.blast_domains = {};
 
-    window.qtipWatcher = qtipWatcher;
- 
   
     $scope.loadBlastDomains = function () {
       if ($scope.loadedBlast == false) {

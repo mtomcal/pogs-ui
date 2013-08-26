@@ -23,12 +23,17 @@
     <tr>
       <th>Accession / Links</th>
       <th>Alternative Orthology</th>
+      <th>Expanded Species Predictions</th>
       <th>Description</th>
     </tr>
   </thead>
   </tbody>
   <tr ng-model="orgdata" ng-repeat="item in orgdata">
-    <td><a target="_blank" href="{{urlmap(item.genemodel)}}">{{item.genemodel}}</a></td><td><plazaflyout style="btn btn-mini btn-success" gene="{{item.genemodel}}" callback="fetchPlaza(gene)"></plazaflyout></td>
+    <td><a target="_blank" href="{{urlmap(item.genemodel)}}">{{item.genemodel}}</a><br/></td><td><plazaflyout style="btn btn-mini btn-success" gene="{{item.genemodel}}" callback="fetchPlaza(gene)"></plazaflyout></td>
+    <td class="span2">
+      <a target="_blank" href="http://bioinformatics.psb.ugent.be/plaza/gene_families/view_orthologs/{{item.locus}}" class="btn btn-mini">Plaza</a>
+      <a target="_blank" href="http://www.gramene.org/{{specieskey[item.organism_id]}}/Gene/Compara?g={{speciesprefix(item.organism_id)}}{{item.locus}}" class="btn btn-mini">Gramene</a>
+    </td>
     <td>{{item.desc}}</td>
   </tr>
   </tbody>
