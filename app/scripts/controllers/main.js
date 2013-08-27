@@ -37,16 +37,10 @@ angular.module('pogsUiApp')
 
     $scope.pogSearch.nuclearBool = '';
 
-    $scope.$watch('pogSearch.nucpred + pogSearch.predictnls', function() {
+    $scope.$watch('pogSearch.nucpred', function() {
       var resolve = function () {
-        if ($scope.pogSearch.nucpred && $scope.pogSearch.predictnls) {
-          return 'either';
-        }
         if ($scope.pogSearch.nucpred) {
           return 'nucpred';
-        }
-        if ($scope.pogSearch.predictnls) {
-          return 'predictnls';
         }
         return '';
       }
