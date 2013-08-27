@@ -1,5 +1,6 @@
 <div class="row-fluid" ng-controller="PlazaCtrl">
-<h2>Plaza Orthologous Group {{id}}</h2>
+  <a class="btn btn-success" style="float: right" tooltip-placement="bottom" tooltip="Click for all species orthologs" target="_blank" href="http://bioinformatics.psb.ugent.be/plaza/gene_families/view_orthologs/{{selectOrthoAccession(orgdata)}}">View Group In Plaza</a>
+  <h2>Plaza Orthologous Group {{id}}</h2>
 
 <center><img ng-show="!loadedGroup" width="25" height="25" src="images/ajax-loader.gif"></center>
 <table ng-hide="!loadedGroup" class="members table table-bordered table-striped">

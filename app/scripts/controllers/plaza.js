@@ -36,6 +36,18 @@ angular.module('pogsUiApp')
       
     }
 
+    $scope.selectOrthoAccession = function (orgdata) {
+      var output = "";
+      _.each(orgdata, function (value) {
+        var matches = value.locus.match(/AT[\w|\d]+/)
+        if (!_.isNull(matches)) {
+          output = value.locus;
+        }
+      });
+      return output;
+    };
+
+
 
     $scope.orgdata = [];
     $scope.pog = Plaza.query({id: $routeParams.id}, function (data) {

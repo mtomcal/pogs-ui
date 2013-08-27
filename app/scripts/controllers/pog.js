@@ -31,6 +31,16 @@ angular.module('pogsUiApp')
       return "";
     }
 
+    $scope.selectOrthoAccession = function (orgdata) {
+      var output = "";
+      _.each(orgdata, function (value) {
+        var matches = value.match(/()(AT[\w|\d]+)(\.+)([\w|\d]+)/)
+        if (!_.isNull(matches)) {
+          output = matches[2];
+        }
+      });
+      return output;
+    };
     $scope.$root.$broadcast('loadedPogPage');
 
     $scope.dataSubmit = function (dataset, datatype) {
