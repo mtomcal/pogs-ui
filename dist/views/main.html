@@ -41,38 +41,92 @@
   </div>
   <h5>Limit Search By Predicted or Established Intracellular Location of Gene Product</h5>
   <small><p><i>All Intracellular Filters Are AND boolean searches.</i></p></small>
-  <div class="clearfix">  
-    <p style="padding-right: 10px" class="inline pull-left">Filter this search using </p>
-    <div class="btn-group inline pull-left">
-      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.predotar" btn-checkbox="'predotar'">Predotar</button>
-      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.targetp" btn-checkbox="'targetp'">TargetP</button>
-    </div>
-     <p style="padding: 0 5px" class="inline pull-left">prediction to</p>
-    <div class="btn-group inline pull-left">
-      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.subCellTarget" btn-radio="'mitochondria'">Mitochondrion</button>
-      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.subCellTarget" btn-radio="'plastid'">Chloroplast</button>
-      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.subCellTarget" btn-radio="'endoret'">Endoplasmid Reticulum</button>
-    </div>
+    <p>Filter this search using</p>
+    <table class="pog-search">
+      <tr>
+        <td>
+          <label class="checkbox">
+            <input type="checkbox" ng-model="pogSearch.predotar" ng-true-value="predotar"><b>Predotar</b>
+          </label>
+        </td>
+        <td>
+          <label class="checkbox">
+            <input type="checkbox" ng-model="pogSearch.targetp" ng-true-value="targetp"><b>TargetP</b>
+          </label>
+        </td>
+        <td><label>prediction to</label></td>
+      </tr>
+    </table>
+    <table class="pog-search">
+      <tr>
+        <td>
+          <label class="radio">
+            <input type="radio" class="input-large" ng-model="pogSearch.subCellTarget" value="mitochondria">Mitochondrion
+          </label>
+        </td>
+        <td>
+          <label class="radio">
+            <input type="radio" ng-model="pogSearch.subCellTarget" value="plastid">Chloroplast
+          </label>
+        </td>
+        <td>
+          <label class="radio">
+            <input type="radio" ng-model="pogSearch.subCellTarget" value="endoret">Endoplasmid Reticulum
+          </label>
+        </td>
+      </tr>
+    </table>
+  <table class="pog-search">
+    <tr>
+      <td>
+        <label class="checkbox">
+          <input type="checkbox" ng-model="pogSearch.nucpred" ng-true-value="nucpred"><b>Nucpred</b></label>
+      </td>
+      <td>
+        <label>
+        prediction to the <b>nucleus</b>.
+      </label>
+      </td>
+    </tr>
+  </table>
+    <table class="pog-search">
+     <tr>
+       <td><p>Filter this search using experimental data from</p>
+       </td>
+     </tr>
+     <tr>
+       <td>
+         <label class="checkbox">
+           <input type="checkbox" ng-model="pogSearch.ppdb" ng-true-value="ppdb"><p tooltip-placement="top" tooltip="Plant Proteome Database (Cornell)"><b>PPDB</b> validating location in</p>
+         </label>
+       </td>
+     </tr>
+   </table> 
+   <table class="pog-search">
+    <tr>
+      <td>
+        <label class="radio">
+          <input type="radio" ng-model="pogSearch.ppdbTarget" value="'mitochondrion'">Mitochondrion
+        </label>
+      </td>
+      <td>
+        <label class="radio">
+          <input type="radio" ng-model="pogSearch.ppdbTarget" value="plastid">Chloroplast
+        </label>
+      </td>
+      <td>
+        <label class="radio">
+          <input type="radio" ng-model="pogSearch.ppdbTarget" value="nucleus">Nucleus
+        </label>
+      </td>      
+      <td>
+        <label class="radio">
+          <input type="radio" ng-model="pogSearch.ppdbTarget" value="ER">Endoplasmid Reticulum
+        </label>
+      </td>
+    </tr>
+  </table>
 
-  </div>
-      <div class="clearfix">    
-    </div>
-    <div class="clearfix">  
-    <p style="padding-right: 10px" class="inline pull-left">Filter this search using </p>
-      <button type="button" class="btn btn-mini btn-success inline pull-left" ng-model="pogSearch.nucpred" btn-checkbox="'nucpred'">Nucpred</button>
-    <p style="padding-left: 10px" class="inline pull-left">prediction to the <b>nucleus</b>.</p>
-  </div>
-  <div class="clearfix">  
-    <p style="padding-right: 10px" class="inline pull-left">Filter this search using experimental data from <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.ppdb" btn-checkbox="'ppdb'" tooltip="Plant Proteome Database (Cornell)">PPDB</button> validating location in:</p>
-  </div>
-   <div class="clearfix">    
-    <div class="btn-group inline pull-left">
-      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.ppdbTarget" btn-radio="'mitochondrion'">Mitochondrion</button>
-      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.ppdbTarget" btn-radio="'plastid'">Chloroplast</button>
-      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.ppdbTarget" btn-radio="'nucleus'">Nucleus</button>
-      <button type="button" class="btn btn-mini btn-success" ng-model="pogSearch.ppdbTarget" btn-radio="'ER'">Endoplasmid Reticulum</button>
-    </div>
-  </div>
   <br>
   <button ng-click="pogSearchSubmit()" class="form_by_pog btn btn-primary">Search</button>
   <button type="button" class="btn btn-mini btn-danger" ng-click="reset()">Reset Filters</button>

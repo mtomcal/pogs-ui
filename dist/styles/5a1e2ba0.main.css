@@ -1460,3 +1460,7 @@ FONT.T66 {
     font-size: 9px;
   }
 }
+/* line 5, main.scss */
+table.pog-search td {
+  padding-right: 8px;
+}
