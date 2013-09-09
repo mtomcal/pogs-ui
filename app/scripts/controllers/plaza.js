@@ -62,6 +62,7 @@ angular.module('pogsUiApp')
 
     $scope.$on('loadedGroup', function () {
       Tree.query({id: $scope.id, method: 'plaza'}, function (data) {
+        $scope.plazaTreeHeight = $scope.genemodels.length * 80;
           $scope.plazaTreeData = data;
         });
     });

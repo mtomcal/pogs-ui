@@ -82,6 +82,8 @@ angular.module('pogsUiApp')
       $scope.$broadcast('loadedGroup');
     });
 
+    
+
     var qtipWatcher = function (css) {
       var unwatch = $scope.$watch(
         function() {
@@ -124,6 +126,7 @@ angular.module('pogsUiApp')
 
     $scope.$on('loadedGroup', function () {
       Tree.query({id: $routeParams.id}, function(tree) {
+        $scope.treeHeight = $scope.genemodels.length * 80;
         $scope.treeData = tree;
       });
     });
@@ -160,6 +163,7 @@ angular.module('pogsUiApp')
 
     $scope.$on('loadedPlazaData', function () {
       Tree.query({id: $scope.plazaId, method: 'plaza'}, function (data) {
+          $scope.plazaTreeHeight = $scope.plazaResults.length * 80;
           $scope.plazaTreeData = data;
         });
     });
