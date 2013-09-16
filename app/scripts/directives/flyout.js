@@ -156,7 +156,7 @@ angular.module('pogsUiApp').
       restrict: 'E',
       transclude: true,
       scope: {},
-      template: '<div class="flyout out"><div class="content"><a ng-click="close()" href="">Close</a><div ng-transclude></div><button ng-click="maximize()" class="btn btn-primary btn-mini">Plaza Cladogram</button></div></div>',
+      template: '<div class="flyout out"><div class="content"><a ng-click="close()" href="">Close</a><div ng-transclude></div><a href="" ng-click="maximize()">Plaza Cladogram</a></div></div>',
       link: function (scope, element, attr, FlyoutCtrl) {
         scope.task = {}
 
