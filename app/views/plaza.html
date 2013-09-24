@@ -18,8 +18,117 @@
   </tbody>
 </table>
 <div class="row-fluid"></div>
-<h3>Cladogram of Closely Related Proteins</h3>
+<button type="button" class="btn btn-secondary" ng-click="dataSubmit('groups', 'fasta')">Sequences of POG members</button>
+  <button type="button" class="btn btn-secondary" ng-click="dataSubmit('groups', 'align')">Alignment of POG members</button>
+  <br />
+  <br />
+<h3>Domain Architecture of POG Members</h3>
+<center><img ng-show="!loadedOrtho" width="25" height="25" src="images/ajax-loader.gif" /></center>
+<table ng-hide="!loadedOrtho" class="domain-maps table table-bordered">
+  <tr>
+    <th>Gene Model</th>
+    <th>Domain Map</th>
+  </tr>
+  <tr ng-model="domains" ng-repeat="(item, value) in domains">
+    <td class="linkify"><a target="_blank" href="{{urlmap(item)}}">{{item}}</a></td>
+    <td class="pog-domains" ng-bind-html-unsafe="value">
+    </td>
+  </tr>
+</table>
+<h3>Experimentally Verified Intracellular Location</h3>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Accession</th>
+    <th>Annotation</th>
+    <th>Experimentally Verified Location</th>
+    <th>Reference</th>
+  </tr>
+  <tr ng-repeat="item in ppdb">
+    <td><a target="_blank" href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td>{{item.annotation}}</td>
+    <td>{{item.location}}</td>
+    <td><a target="_blank" href="http://ppdb.tc.cornell.edu/dbsearch/gene.aspx?acc={{item.query_gm}}">Reference</a></td>
+  </tr>
+</table>
+
+<h3>Predicted Intracellular Location</h3>
+<table class="targeting-1 table table-bordered table-striped">
+  <tr>
+    <th>Accession</th>
+    <th>Prediction Tool</th>
+    <th>Chloroplast</th>
+    <th>Mitochondria</th>
+    <th>Signal Peptide</th>
+    <th>None / Other</th>
+    <th>Nucleus</th>
+    <th>Prediction</th>
+
+  </tr>
+  <tbody ng-repeat="item in predotar">
+  <tr>
+    <td rowspan="3"><a target="_blank" href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td>Predotar</td>
+    <td>{{item.ctp}}</td>
+    <td>{{item.mtp}}</td>
+    <td>{{item.er}}</td>
+    <td>{{item.none}}</td>
+    <td>–</td>
+    <td>{{item.prediction}}</td>
+  </tr>
+  <tr>
+    <td>TargetP</td>
+    <td>{{targetp[$index].ctp}}</td>
+    <td>{{targetp[$index].mtp}}</td>
+    <td>{{targetp[$index].sp}}</td>
+    <td>{{targetp[$index].other}}</td>
+    <td>–</td>
+    <td>{{targetp[$index].prediction}}</td>
+  </tr>
+  <tr>
+    <td>Nucpred</td>
+    <td>–</td>
+    <td>–</td>
+    <td>–</td>
+    <td>–</td>
+    <td>{{nucpred[$index].score}}</td>
+    <td>{{nucpred[$index].prediction}}</td>
+  </tr>
+  </tbody>
+</table>
+
+
+<h3>Closely Related Proteins</h3>
+<tabset>
+<tab heading="Cladogram">
+
 <treerender divid="pog" color="rgb(0,0,0)" genemodels="genemodels" tree="plazaTreeData" height="{{plazaTreeHeight}}" width="1000" url="BASE_URL" pogid="id" padding="100" method="plaza">
 <div id="phylo_pog"></div>
 </treerender>
+<div class="row-fluid"></div>
+</tab>
+<tab select="loadBlastDomains()" heading="Domain Architecture of Closely Related Proteins">
+<center><img ng-show="!loadedBlast" width="25" height="25" src="images/ajax-loader.gif" /></center>
+<table ng-hide="!loadedBlast" class="domain-maps table table-bordered">
+  <tr>
+    <th>Gene Model</th>
+    <th>Domain Map</th>
+  </tr>
+  <tr ng-model="blast_domains" ng-repeat="(item, value) in blast_domains">
+    <td class="linkify"><a target="_blank" href="{{urlmap(item)}}">{{item}}</a></td>
+    <td class="blast-domains" ng-bind-html-unsafe="value">
+    </td>
+  </tr>
+</table>
+
+</tab>
+
+</tabset>
+  <button type="button" class="btn btn-secondary" ng-click="dataSubmit('blast', 'fasta')">Sequences of Closely Related Proteins</button>
+  <button type="button" class="btn btn-secondary" ng-click="dataSubmit('blast', 'align')">Alignment of Closely Related Proteins</button>
+
+ </div>
+
+
+
 </div>

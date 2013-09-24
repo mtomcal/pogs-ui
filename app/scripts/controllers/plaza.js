@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pogsUiApp')
-  .controller('PlazaCtrl', function ($scope, $location, $routeParams, Plaza, Tree, BASE_URL) {
+  .controller('PlazaCtrl', function ($scope, $location, $routeParams, Plaza, Tree, BASE_URL, $q, Domains, BlastDomains, Predotar, Targetp, Prednls, Ppdb, Nucpred, Search) {
     $scope.plazaResults = [];
     $scope.plazaTreeData = {};
     $scope.loadedBlast = false;
@@ -11,6 +11,14 @@ angular.module('pogsUiApp')
     $scope.genemodels = [];
     $scope.id = $routeParams.id;
     $scope.BASE_URL = BASE_URL;
+    $scope.dataset = 'blast';
+    $scope.datatype = 'fasta';
+    $scope.specieskey = {
+      "0": "Zea_mays",
+      "1": "Arabidopsis_thaliana",
+      "2": "Populus_trichocarpa",
+      "3": "Oryza_sativa",
+    }
 
     $scope.$root.$broadcast('loadedPlazaPage');
 
@@ -66,5 +74,48 @@ angular.module('pogsUiApp')
           $scope.plazaTreeData = data;
         });
     });
+
+    var qtipWatcher = function (css) {
+      var unwatch = $scope.$watch(
+        function() {
+        return angular.element(css + ' area').length != 0;
+      },
+      function () {
+        if (angular.element(css + ' area').length > 0) {
+          angular.element(css + ' area').qtip({
+            content: function () {
+              return angular.element(this).attr('alt');
+            },
+            position: {
+              my: 'top left',
+              at: 'bottom right',
+            }
+          });
+          unwatch();
+        }
+
+      }, true);
+    }
+
+    $scope.domains = Domains.query({id: $routeParams.id, ortho: 'plaza'}, function (data) {
+      qtipWatcher(".pog-domains");
+      $scope.loadedOrtho = true;
+      return data;
+    });
+
+    $scope.loadBlastDomains = function () {
+      if ($scope.loadedBlast == false) {
+        $scope.blast_domains = BlastDomains.query({id: $routeParams.id, ortho: 'plaza'}, function () {
+          qtipWatcher(".blast-domains");
+          $scope.loadedBlast = true;
+        });
+      }
+    };
+
+    $scope.prednls = Prednls.query({id: $routeParams.id, ortho: 'plaza'});
+    $scope.nucpred = Nucpred.query({id: $routeParams.id, ortho: 'plaza'});
+    $scope.predotar = Predotar.query({id: $routeParams.id, ortho: 'plaza'});
+    $scope.targetp = Targetp.query({id: $routeParams.id, ortho: 'plaza'});
+    $scope.ppdb = Ppdb.query({id: $routeParams.id, ortho: 'plaza'});
 
   });

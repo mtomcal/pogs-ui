@@ -3,8 +3,6 @@
 angular.module('pogsUiApp')
   .controller('PogCtrl', function ($scope, $location, $routeParams, $q, BASE_URL, Pog, Domains, BlastDomains, Predotar, Targetp, Prednls, Ppdb, Nucpred, Tree, Plaza, Search) {
 
-
-    window.myscope = $scope;
     $scope.BASE_URL = BASE_URL;
     $scope.plazaResults = [];
     $scope.plazaId = 0;
