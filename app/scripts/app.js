@@ -11,7 +11,7 @@ angular.module('pogsUiApp', ['ui', 'ui.bootstrap', 'ngResource', 'ngSanitize'])
         templateUrl: 'views/pog.html',
         controller: 'PogCtrl'
       })
-      .when('/mart/:id/:type/:dataset', {
+      .when('/mart/:id/:type/:dataset/:ortho', {
         templateUrl: 'views/mart.html',
         controller: 'MartCtrl'
       })

@@ -41,8 +41,13 @@ angular.module('pogsUiApp')
     };
     $scope.$root.$broadcast('loadedPogPage');
 
-    $scope.dataSubmit = function (dataset, datatype) {
-      $location.path('/mart/' + $scope.id + '/' + datatype + '/' + dataset);
+    $scope.dataSubmit = function (dataset, datatype, ortho) {
+      if (ortho == 'plaza') {
+
+      } else {
+        ortho = 'gramene';
+      }
+      $location.path('/mart/' + $scope.id + '/' + datatype + '/' + dataset + '/' + ortho);
     };
 
     $scope.urlmap = function(genemodel) {

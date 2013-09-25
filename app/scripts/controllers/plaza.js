@@ -55,7 +55,14 @@ angular.module('pogsUiApp')
       return output;
     };
 
+    $scope.dataSubmit = function (dataset, datatype, ortho) {
+      if (ortho == 'plaza') {
 
+      } else {
+        ortho = 'gramene';
+      }
+      $location.path('/mart/' + $scope.id + '/' + datatype + '/' + dataset + '/' + ortho);
+    };
 
     $scope.orgdata = [];
     $scope.pog = Plaza.query({id: $routeParams.id}, function (data) {

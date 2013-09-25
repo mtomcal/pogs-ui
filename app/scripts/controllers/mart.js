@@ -6,13 +6,14 @@ angular.module('pogsUiApp')
   var dataset = $scope.dataset = $routeParams.dataset;
   var type = $scope.type = $routeParams.type;
   var id = $scope.id = $routeParams.id;
+  var ortho = $routeParams.ortho;
 
   $scope.loadedFasta = false;
   $scope.loadedAlign = false;
   $scope.loader = true;
 
   var loadFasta = function (dataset) {
-    Fasta.query({id: $routeParams.id, dataset: dataset}, function (data) {
+    Fasta.query({id: $routeParams.id, dataset: dataset, ortho: ortho}, function (data) {
       $scope.fasta = [];
       _.each(data.fasta, function (value) {
         $scope.fasta.push(">" + value.genemodel + " | " + angular.element.trim(value.desc) + "\n");
@@ -25,7 +26,7 @@ angular.module('pogsUiApp')
   }
 
   var loadAlign = function (dataset) {
-    Align.query({id: $routeParams.id, dataset: dataset}, function (data) {
+    Align.query({id: $routeParams.id, dataset: dataset, ortho: ortho}, function (data) {
       $scope.align = data;
       $scope.loadedAlign = true;
       $scope.loader = false;
@@ -40,7 +41,12 @@ angular.module('pogsUiApp')
     loadAlign(dataset);
   }
   $scope.back = function () {
-    $location.path('/pog/' + id);
+    if (ortho == 'plaza') {
+      var slug = 'plaza';
+    } else {
+      var slug = 'pog';
+    }
+    $location.path('/' + slug + '/' + id);
   }
 });
 
