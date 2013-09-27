@@ -20,6 +20,10 @@
  <h2>Gramene Orthologous Group {{id}}</h2>
 <approval update="loadedGroup" genemodels="genemodels"></approval>
 <center><img ng-show="!loadedGroup" width="25" height="25" src="images/ajax-loader.gif" /></center>
+<button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('groups', 'fasta', '')">Sequences of POG members</button>
+<button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('groups', 'align', '')">Alignment of POG members</button>
+<br />
+<br />
 <table ng-hide="!loadedGroup" class="members table table-bordered table-striped">
   <thead>
     <tr>
@@ -35,10 +39,6 @@
   </tr>
   </tbody>
 </table>
-<button type="button" class="btn btn-secondary" ng-click="dataSubmit('groups', 'fasta', '')">Sequences of POG members</button>
-  <button type="button" class="btn btn-secondary" ng-click="dataSubmit('groups', 'align', '')">Alignment of POG members</button>
-  <br />
-  <br />
 <h3>Domain Architecture of POG Members</h3>
 <center><img ng-show="!loadedOrtho" width="25" height="25" src="images/ajax-loader.gif" /></center>
 <table ng-hide="!loadedOrtho" class="domain-maps table table-bordered">
@@ -142,8 +142,8 @@
 </tab>
 
 </tabset>
-  <button type="button" class="btn btn-secondary" ng-click="dataSubmit('blast', 'fasta', '')">Sequences of Closely Related Proteins</button>
-  <button type="button" class="btn btn-secondary" ng-click="dataSubmit('blast', 'align', '')">Alignment of Closely Related Proteins</button>
+  <button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('blast', 'fasta', '')">Sequences of Closely Related Proteins</button>
+  <button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('blast', 'align', '')">Alignment of Closely Related Proteins</button>
 
  </div>
 </flyoutbody>

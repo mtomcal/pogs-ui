@@ -2,6 +2,11 @@
   <a class="btn btn-success" style="float: right" tooltip-placement="bottom" tooltip="Click for all species orthologs" target="_blank" href="http://bioinformatics.psb.ugent.be/plaza/gene_families/view_orthologs/{{selectOrthoAccession(orgdata)}}">View Orthologs in Additional Species In Plaza</a>
   <h2>Plaza Orthologous Group {{id}}</h2>
 
+<button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('groups', 'fasta', 'plaza')">Sequences of POG members</button>
+  <button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('groups', 'align', 'plaza')">Alignment of POG members</button>
+  <br>
+  <br>
+
 <center><img ng-show="!loadedGroup" width="25" height="25" src="images/ajax-loader.gif"></center>
 <table ng-hide="!loadedGroup" class="members table table-bordered table-striped">
   <thead>
@@ -18,10 +23,6 @@
   
 </table>
 <div class="row-fluid"></div>
-<button type="button" class="btn btn-secondary" ng-click="dataSubmit('groups', 'fasta', 'plaza')">Sequences of POG members</button>
-  <button type="button" class="btn btn-secondary" ng-click="dataSubmit('groups', 'align', 'plaza')">Alignment of POG members</button>
-  <br>
-  <br>
 <h3>Domain Architecture of POG Members</h3>
 <center><img ng-show="!loadedOrtho" width="25" height="25" src="images/ajax-loader.gif"></center>
 <table ng-hide="!loadedOrtho" class="domain-maps table table-bordered">
@@ -124,8 +125,8 @@
 </tab>
 
 </tabset>
-  <button type="button" class="btn btn-secondary" ng-click="dataSubmit('blast', 'fasta', 'plaza')">Sequences of Closely Related Proteins</button>
-  <button type="button" class="btn btn-secondary" ng-click="dataSubmit('blast', 'align', 'plaza')">Alignment of Closely Related Proteins</button>
+  <button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('blast', 'fasta', 'plaza')">Sequences of Closely Related Proteins</button>
+  <button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('blast', 'align', 'plaza')">Alignment of Closely Related Proteins</button>
 
  </div>
 

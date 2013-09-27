@@ -121,7 +121,7 @@ angular.module('pogsUiApp')
       $location.path('/genesearch');
     }
 
-    $scope.booleanGuidelines = "<p>For Boolean Searches: <ul style=\"text-align:left;\"><li>Use 'TERM1 AND TERM2' for AND searches</li><li>A space for OR Searches</li><li>Quotes for exact match searches</li></ul></p>";
+    $scope.booleanGuidelines = "<p>For Boolean Searches: <ul style=\"text-align:left;\"><li>Use 'TERM1 AND TERM2' for AND searches</li><li>A space for OR Searches</li><li>Quotes for exact match searches</li><li>For wildcard searches, use an asterisk (e.g. 'ribosom<b>*</b>')</li></ul></p>";
 
 
   });
