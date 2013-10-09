@@ -1,5 +1,5 @@
 angular.module('pogsUiApp').
-  directive('treerender', function($rootScope){
+  directive('treerender', function($rootScope, $location){
     return {
       restrict: 'E',
       scope: {
@@ -75,6 +75,10 @@ angular.module('pogsUiApp').
               angular.element('#phylo_' + scope.divid).html("");
               var elem = angular.element('#phylo_' + scope.divid);
               var render = new Smits.PhyloCanvas(dataObject,'phylo_' + scope.divid,parseInt(scope.width),parseInt(scope.height));
+              angular.element('svg a').click(function (element) {
+                window.open(element.delegateTarget.href.baseVal, '_blank');
+                return false;
+              });
               angular.element('#phylo_' + scope.divid + '> svg').attr('height', parseInt(scope.height) + scope.padding);
               if (typeof scope.dy != "undefined") {
                 var $ = angular.element;
