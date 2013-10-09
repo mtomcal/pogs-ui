@@ -1,0 +1,149 @@
+<div class="row-fluid" ng-controller="PogCtrl">
+ <flyoutarea>
+ <flyout>
+  <div class="plaza-tree">
+    <treerender divid="plaza" color="rgb(255,255,255)" genemodels="plazaResults" tree="plazaTreeData" url="BASE_URL" pogid="plazaId" height="{{plazaTreeHeight}}" width="900" dy="5" method="plaza" lazy="true">
+   <div id="phylo_plaza"></div>
+   </treerender>
+ </div>
+ <h4><a target="_blank" href="{{BASE_URL}}#/plaza/{{plazaId}}">Plaza Group {{plazaId}}</a></h4>
+   <ul>
+     <li ng-repeat="result in plazaResults">
+     {{result}}
+     </li>
+   </ul>
+   <b>Actions:</b>
+   <p><a target="_blank" href="http://bioinformatics.psb.ugent.be/plaza/gene_families/view_orthologs/{{selectOrthoAccession(plazaResults)}}">View Orthologs in Additional Species In Plaza</a></p>
+ </flyout> 
+ <flyoutbody>
+  <a class="btn btn-success" style="float: right" tooltip-placement="bottom" tooltip="Click for all species orthologs" target="_blank" href="http://www.gramene.org/{{specieskey[orgdata[0].organism_id]}}/Gene/Compara?g={{speciesprefix(orgdata[0].organism_id)}}{{orgdata[0].locus}}">View Orthologs in Additional Species at Gramene</a>
+ <h2>Gramene Orthologous Group {{id}}</h2>
+<approval update="loadedGroup" genemodels="genemodels"></approval>
+<center><img ng-show="!loadedGroup" width="25" height="25" src="images/ajax-loader.gif"></center>
+<button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('groups', 'fasta', '')">Sequences of POG members</button>
+<button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('groups', 'align', '')">Alignment of POG members</button>
+<br>
+<br>
+<table ng-hide="!loadedGroup" class="members table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Accession / Links</th>
+      <th>Alternative Orthology</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  
+  <tr ng-model="orgdata" ng-repeat="item in orgdata">
+    <td><a target="_blank" href="{{urlmap(item.genemodel)}}">{{item.genemodel}}</a><br></td><td><plazaflyout style="btn btn-mini btn-success" gene="{{item.genemodel}}" callback="fetchPlaza(gene)"></plazaflyout></td>
+    <td>{{item.desc}}</td>
+  </tr>
+  
+</table>
+<h3>Domain Architecture of POG Members</h3>
+<center><img ng-show="!loadedOrtho" width="25" height="25" src="images/ajax-loader.gif"></center>
+<table ng-hide="!loadedOrtho" class="domain-maps table table-bordered">
+  <tr>
+    <th>Gene Model</th>
+    <th>Domain Map</th>
+  </tr>
+  <tr ng-model="domains" ng-repeat="(item, value) in domains">
+    <td class="linkify"><a target="_blank" href="{{urlmap(item)}}">{{item}}</a></td>
+    <td class="pog-domains" ng-bind-html-unsafe="value">
+    </td>
+  </tr>
+</table>
+<h3>Experimentally Verified Intracellular Location</h3>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Accession</th>
+    <th>Annotation</th>
+    <th>Experimentally Verified Location</th>
+    <th>Reference</th>
+  </tr>
+  <tr ng-repeat="item in ppdb">
+    <td><a target="_blank" href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td>{{item.annotation}}</td>
+    <td>{{item.location}}</td>
+    <td><a target="_blank" href="http://ppdb.tc.cornell.edu/dbsearch/gene.aspx?acc={{item.query_gm}}">Reference</a></td>
+  </tr>
+</table>
+
+<h3>Predicted Intracellular Location</h3>
+<table class="targeting-1 table table-bordered table-striped">
+  <tr>
+    <th>Accession</th>
+    <th>Prediction Tool</th>
+    <th>Chloroplast</th>
+    <th>Mitochondria</th>
+    <th>Signal Peptide</th>
+    <th>None / Other</th>
+    <th>Nucleus</th>
+    <th>Prediction</th>
+
+  </tr>
+  <tbody ng-repeat="item in predotar">
+  <tr>
+    <td rowspan="3"><a target="_blank" href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
+    <td>Predotar</td>
+    <td>{{item.ctp}}</td>
+    <td>{{item.mtp}}</td>
+    <td>{{item.er}}</td>
+    <td>{{item.none}}</td>
+    <td>–</td>
+    <td>{{item.prediction}}</td>
+  </tr>
+  <tr>
+    <td>TargetP</td>
+    <td>{{targetp[$index].ctp}}</td>
+    <td>{{targetp[$index].mtp}}</td>
+    <td>{{targetp[$index].sp}}</td>
+    <td>{{targetp[$index].other}}</td>
+    <td>–</td>
+    <td>{{targetp[$index].prediction}}</td>
+  </tr>
+  <tr>
+    <td>Nucpred</td>
+    <td>–</td>
+    <td>–</td>
+    <td>–</td>
+    <td>–</td>
+    <td>{{nucpred[$index].score}}</td>
+    <td>{{nucpred[$index].prediction}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>Closely Related Proteins</h3>
+<tabset>
+<tab heading="Cladogram">
+
+<treerender divid="pog" color="rgb(0,0,0)" genemodels="genemodels" tree="treeData" height="{{treeHeight}}" width="1000" url="BASE_URL" pogid="id">
+<div id="phylo_pog"></div>
+</treerender>
+
+<div class="row-fluid"></div>
+</tab>
+<tab select="loadBlastDomains()" heading="Domain Architecture of Closely Related Proteins">
+
+<center><img ng-show="!loadedBlast" width="25" height="25" src="images/ajax-loader.gif"></center>
+<table ng-hide="!loadedBlast" class="domain-maps table table-bordered">
+  <tr>
+    <th>Gene Model</th>
+    <th>Domain Map</th>
+  </tr>
+  <tr ng-model="blast_domains" ng-repeat="(item, value) in blast_domains">
+    <td class="linkify"><a target="_blank" href="{{urlmap(item)}}">{{item}}</a></td>
+    <td class="blast-domains" ng-bind-html-unsafe="value">
+    </td>
+  </tr>
+</table>
+
+</tab>
+
+</tabset>
+  <button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('blast', 'fasta', '')">Sequences of Closely Related Proteins</button>
+  <button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('blast', 'align', '')">Alignment of Closely Related Proteins</button>
+
+ </flyoutbody></flyoutarea></div>
+
