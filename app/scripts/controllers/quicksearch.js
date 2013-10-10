@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pogsUiApp')
-  .controller('QuickSearch', function ($scope, $location, Params) {
+  .controller('QuickSearch', function ($scope, $location, Params, $route) {
 
     window.myscope = $scope;
     $scope.pogSearch = {};
@@ -33,6 +33,10 @@ angular.module('pogsUiApp')
         type: 'byPOG',
         pogMethod: $scope.pogSearch.pogMethod
       });
+      if ($location.path() == '/search') {
+        $route.reload();
+        return;
+      }
       $location.path('/search');
     }
   });

@@ -53,8 +53,10 @@ angular.module('pogsUiApp')
           var keys = Object.keys(data.results);
           if (Params.get(searchChannel).pogMethod == 'plaza_groups') {
             $location.path('/plaza/'+keys[0]);
+            $location.replace();
           } else {
             $location.path('/pog/'+keys[0]);
+            $location.replace();
           }
           return;
         }

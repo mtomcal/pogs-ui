@@ -76,7 +76,7 @@ angular.module('pogsUiApp').
               var elem = angular.element('#phylo_' + scope.divid);
               var render = new Smits.PhyloCanvas(dataObject,'phylo_' + scope.divid,parseInt(scope.width),parseInt(scope.height));
               angular.element('svg a').click(function (element) {
-                window.open(element.delegateTarget.href.baseVal, '_blank');
+                window.location = element.delegateTarget.href.baseVal;
                 return false;
               });
               angular.element('#phylo_' + scope.divid + '> svg').attr('height', parseInt(scope.height) + scope.padding);
