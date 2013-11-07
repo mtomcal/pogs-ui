@@ -1,4 +1,5 @@
 .flyout {
+  -webkit-transform: translate3d(0, 0, 0);
   -webkit-transition: all 0.3s ease-in-out;  
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -23,6 +24,7 @@
 }
 
 .flyout.out {
+  -webkit-transform: translate3d(0, 0, 0);
   left: -16em;
 }
 
@@ -46,6 +48,7 @@
 
 .flyout-body {
   position: relative;
+  -webkit-transform: translate3d(0, 0, 0);
   -webkit-transition: all 0.3s ease-in-out;  
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -65,10 +68,11 @@
 }
 
 .no-transition {
-    -moz-transition: none;
-    -webkit-transition: none;
-    -o-transition: none;
-    transition: none;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transition: none;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
 }
 
   

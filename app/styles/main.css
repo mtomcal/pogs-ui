@@ -1,5 +1,6 @@
 /* line 1, _flyout.scss */
 .flyout {
+  -webkit-transform: translate3d(0, 0, 0);
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -18,25 +19,26 @@
   z-index: 100;
 }
 
-/* line 20, _flyout.scss */
+/* line 21, _flyout.scss */
 .flyout.extend {
   width: 100%;
   z-index: 100;
 }
 
-/* line 25, _flyout.scss */
+/* line 26, _flyout.scss */
 .flyout.out {
+  -webkit-transform: translate3d(0, 0, 0);
   left: -16em;
 }
 
-/* line 29, _flyout.scss */
+/* line 31, _flyout.scss */
 .flyout .content {
   width: 100%;
   position: relative;
   padding: 1.0em;
 }
 
-/* line 35, _flyout.scss */
+/* line 37, _flyout.scss */
 .plaza-tree {
   width: 1000px;
   float: right;
@@ -44,14 +46,15 @@
   overflow: hidden;
 }
 
-/* line 43, _flyout.scss */
+/* line 45, _flyout.scss */
 .plaza-tree.extend {
   display: inline;
 }
 
-/* line 47, _flyout.scss */
+/* line 49, _flyout.scss */
 .flyout-body {
   position: relative;
+  -webkit-transform: translate3d(0, 0, 0);
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -62,18 +65,19 @@
   width: auto;
 }
 
-/* line 59, _flyout.scss */
+/* line 62, _flyout.scss */
 .flyout-body.extend {
   display: none;
 }
 
-/* line 63, _flyout.scss */
+/* line 66, _flyout.scss */
 .flyout-body.out {
   margin-left: 0;
 }
 
-/* line 67, _flyout.scss */
+/* line 70, _flyout.scss */
 .no-transition {
+  -webkit-transform: translate3d(0, 0, 0);
   -moz-transition: none;
   -webkit-transition: none;
   -o-transition: none;
@@ -841,4 +845,16 @@ FONT.T66 {
 /* line 5, main.scss */
 table.pog-search td {
   padding-right: 8px;
+}
+
+/* line 9, main.scss */
+.external-links {
+  padding-top: 15px;
+  padding-left: 5%;
+}
+
+/* line 14, main.scss */
+.external-links a {
+  float: right;
+  margin-left: 4px;
 }

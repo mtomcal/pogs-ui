@@ -16,8 +16,13 @@
    <p><a target="_blank" href="http://bioinformatics.psb.ugent.be/plaza/gene_families/view_orthologs/{{selectOrthoAccession(plazaResults)}}">View Orthologs in Additional Species In Plaza</a></p>
  </flyout> 
  <flyoutbody>
-  <a class="btn btn-success" style="float: right" tooltip-placement="bottom" tooltip="Click for all species orthologs" target="_blank" href="http://www.gramene.org/{{specieskey[orgdata[0].organism_id]}}/Gene/Compara?g={{speciesprefix(orgdata[0].organism_id)}}{{orgdata[0].locus}}">View Orthologs in Additional Species at Gramene</a>
- <h2>Gramene Orthologous Group {{id}}</h2>
+ <div class="row-fluid">
+   <h2 class="span6">Gramene Orthologous Group {{id}}</h2>
+   <div class="span6 external-links">
+  <atted locus="orgdata[0].locus"></atted>
+  <a class="btn btn-success" tooltip-placement="bottom" tooltip="Click for all species orthologs" target="_blank" href="http://www.gramene.org/{{specieskey[orgdata[0].organism_id]}}/Gene/Compara?g={{speciesprefix(orgdata[0].organism_id)}}{{orgdata[0].locus}}">View Orthologs in Additional Species at Gramene</a>
+ </div>
+</div>
 <approval update="loadedGroup" genemodels="genemodels"></approval>
 <center><img ng-show="!loadedGroup" width="25" height="25" src="images/ajax-loader.gif"></center>
 <button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('groups', 'fasta', '')">Sequences of POG members</button>

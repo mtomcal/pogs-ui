@@ -30,6 +30,15 @@ angular.module('pogsUiApp').
       term = term.replace(/[\']+/g, '"');
       return term;
     };
+    var genefilter = function (term) {
+      if (!term) {
+        return '';
+      }
+      term = term + '';
+      term = term.replace(/\_T/g, "_P");
+      term = term.replace(/\_FGT/g, "_FGP");
+      return term;
+    };
     return {
       set: function (channel, value, broadcast) {
         clear(channel);
@@ -37,6 +46,9 @@ angular.module('pogsUiApp').
           if (key == 'domain') {
             val = textfilter(val);
           }
+          if (key == 'gene' || key == 'tid') {
+            val = genefilter(val);
+          };
           value[key] = val || '';
         });
         _.extend(channels[channel], value);

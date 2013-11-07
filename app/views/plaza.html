@@ -1,6 +1,11 @@
 <div class="row-fluid" ng-controller="PlazaCtrl">
-  <a class="btn btn-success" style="float: right;" tooltip-placement="bottom" tooltip="Click for all species orthologs" target="_blank" href="http://bioinformatics.psb.ugent.be/plaza/gene_families/view_orthologs/{{selectOrthoAccession(orgdata)}}">View Orthologs in Additional Species In Plaza</a>
-  <h2>Plaza Orthologous Group {{id}}</h2>
+ <div class="row-fluid">
+   <h2 class="span6">Plaza Orthologous Group {{id}}</h2>
+   <div class="span6 external-links">
+  <atted locus="selectOrthoAccession(orgdata)"></atted>
+  <a class="btn btn-success" tooltip-placement="bottom" tooltip="Click for all species orthologs" target="_blank" href="http://bioinformatics.psb.ugent.be/plaza/gene_families/view_orthologs/{{selectOrthoAccession(orgdata)}}">View Orthologs in Additional Species In Plaza</a>
+ </div>
+ </div>
 
 <button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('groups', 'fasta', 'plaza')">Sequences of POG members</button>
   <button type="button" class="btn btn-primary btn-mini" ng-click="dataSubmit('groups', 'align', 'plaza')">Alignment of POG members</button>
