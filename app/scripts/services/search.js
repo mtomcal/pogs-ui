@@ -16,7 +16,7 @@ angular.module('pogsUiApp').
                      alt:'json', 
                      callback:'JSON_CALLBACK'
                    }, {
-    query: {method:'JSONP', query: {}, cache: true}
+    query: {method:'JSONP', query: {}, cache: false}
   });
 });
 
