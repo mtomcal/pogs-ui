@@ -2,7 +2,6 @@
  <div class="row-fluid">
    <h2 class="span6">Plaza Orthologous Group {{id}}</h2>
    <div class="span6 external-links">
-  <atted locus="selectOrthoAccession(orgdata)"></atted>
   <a class="btn btn-success" tooltip-placement="bottom" tooltip="Click for all species orthologs" target="_blank" href="http://bioinformatics.psb.ugent.be/plaza/gene_families/view_orthologs/{{selectOrthoAccession(orgdata)}}">View Orthologs in Additional Species In Plaza</a>
  </div>
  </div>
@@ -17,12 +16,14 @@
   <thead>
     <tr>
       <th>Accession / Links</th>
+      <th>Coexpression Data</th>
       <th>Description</th>
     </tr>
   </thead>
   </tbody>
   <tr ng-model="orgdata" ng-repeat="item in orgdata">
     <td><a target="_blank" href="{{urlmap(item.genemodel)}}">{{item.genemodel}}</a></td>
+    <td><atted locus="item.locus"></atted></td>
     <td>{{item.desc}}</td>
   </tr>
   </tbody>
@@ -54,7 +55,7 @@
     <td><a target="_blank" href="{{urlmap(item.query_gm)}}">{{item.query_gm}}</a></td>
     <td>{{item.annotation}}</td>
     <td>{{item.location}}</td>
-    <td><a target="_blank" href="http://ppdb.tc.cornell.edu/dbsearch/gene.aspx?acc={{item.query_gm}}">Reference</a></td>
+    <td><a target="_blank" href="http://ppdb.tc.cornell.edu/dbsearch/gene.aspx?acc={{item.query_gm}}">Source Data From PPDB</a></td>
   </tr>
 </table>
 
