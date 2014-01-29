@@ -49,7 +49,7 @@ angular.module('pogsUiApp')
           $scope.noResults = true;
           return;
         }
-        if (Object.keys(data.results).length == 1) {
+        if (data.count == 1) {
           var keys = Object.keys(data.results);
           if (Params.get(searchChannel).pogMethod == 'plaza_groups') {
             $location.path('/plaza/'+keys[0]);

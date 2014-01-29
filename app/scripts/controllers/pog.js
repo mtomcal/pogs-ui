@@ -57,8 +57,8 @@ angular.module('pogsUiApp')
         rice: [/()(Os[\w|\d]+\.+[\w|\d]+)()()/, 'http://rice.plantbiology.msu.edu/cgi-bin/ORF_infopage.cgi?orf='],
         poplar: [/()(POPTR\_[\w|\d]+)(\.+)([\w|\d]+)/, 'http://www.gramene.org/Populus_trichocarpa/Gene/Summary?g='],
         arab: [/()(AT[\w|\d]+)(\.+)([\w|\d]+)/, 'http://www.arabidopsis.org/servlets/TairObject?type=locus&name='],
-        maize: [/()(GRMZM[\w|\d]+)(\_)([\w|\d]+)/, 'http://www.maizesequence.org/Zea_mays/Gene?db=core;g='],
-        acmaize: [/()(AC[\.|\d|_|\w]+)()/, 'http://www.maizesequence.org/Zea_mays/Gene?db=core;g='],
+        maize: [/()(GRMZM[\w|\d]+)(\_)([\w|\d]+)/, 'http://ensembl.gramene.org/Zea_mays/Gene/Summary?g='],
+        acmaize: [/()(AC[\.|\d|_|\w]+)()/, 'http://ensembl.gramene.org/Zea_mays/Gene/Summary?g='],
       };
 
       _.each(_regs, function(val, key) {
