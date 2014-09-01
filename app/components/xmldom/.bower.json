@@ -1,0 +1,20 @@
+{
+  "name": "xmldom",
+  "version": "0.1.16",
+  "main": "dom-parser.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "homepage": "https://github.com/jindw/xmldom",
+  "_release": "0.1.16",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.16",
+    "commit": "b47c082dad42811f63e46b76e8daf12495c7902b"
+  },
+  "_source": "git://github.com/jindw/xmldom.git",
+  "_target": "~0.1.16",
+  "_originalSource": "xmldom"
+}
