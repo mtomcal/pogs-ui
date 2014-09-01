@@ -1,6 +1,6 @@
 angular.module('pogsUiApp').
     factory('Blast', function($resource){
-  return $resource('http://cas-pogs.uoregon.edu/api/blast.jsonp', 
+  return $resource('http://cas-pogs.uoregon.edu/dev/api/blast.jsonp', 
                    {
                      method: '@method',
                      seq: '@seq',
