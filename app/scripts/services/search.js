@@ -1,6 +1,6 @@
 angular.module('pogsUiApp').
     factory('Search', function($resource){
-  return $resource('http://cas-pogs.uoregon.edu/api/search.jsonp', 
+  return $resource('http://cas-pogs.uoregon.edu/dev/api/search.jsonp', 
                    {
                      page: '@page', 
                      gene: '@gene',
