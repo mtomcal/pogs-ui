@@ -3,5 +3,4 @@ node_modules
 .sass-cache
 *.swp
 .DS_Store
-dist/domains
-dist/dev
+.idea

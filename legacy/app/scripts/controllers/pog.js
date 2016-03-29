@@ -20,14 +20,14 @@ angular.module('pogsUiApp')
       "0": "Zea_mays",
       "1": "Arabidopsis_thaliana",
       "2": "Populus_trichocarpa",
-      "3": "Oryza_sativa",
-    }
+      "3": "Oryza_sativa"
+    };
     $scope.speciesprefix = function (organism_id) {
       if (organism_id == "3") {
         return "LOC_";
       }
       return "";
-    }
+    };
 
     $scope.selectOrthoAccession = function (orgdata) {
       var output = "";
@@ -69,7 +69,7 @@ angular.module('pogsUiApp')
         }
       });
       return _link;
-      
+
     }
 
 
@@ -85,7 +85,7 @@ angular.module('pogsUiApp')
       $scope.$broadcast('loadedGroup');
     });
 
-    
+
 
     var qtipWatcher = function (css) {
       var unwatch = $scope.$watch(
@@ -117,7 +117,7 @@ angular.module('pogsUiApp')
 
     $scope.blast_domains = {};
 
-  
+
     $scope.loadBlastDomains = function () {
       if ($scope.loadedBlast == false) {
         $scope.blast_domains = BlastDomains.query({id: $routeParams.id}, function () {
@@ -138,7 +138,7 @@ angular.module('pogsUiApp')
 
     $scope.fetchPlaza = function (gene) {
       var search = Search.query({
-        page: '1', 
+        page: '1',
         gene: '',
         tid: gene,
         domain: '',
@@ -148,13 +148,13 @@ angular.module('pogsUiApp')
         nucop: '',
         location: '',
         ppdb: '',
-        pogMethod: 'plaza_groups',
+        pogMethod: 'plaza_groups'
       }, function(data) {
         var deferred = $q.defer();
         var key = Object.keys(data.results);
         $scope.plazaId = key[0];
         Plaza.query({id: key[0]}, function (plaza) {
-          var results = [] 
+          var results = [];
           _.each(plaza.locus, function(val, key) {
             results.push(val.genemodel);
           });
@@ -162,7 +162,7 @@ angular.module('pogsUiApp')
           $scope.$broadcast('loadedPlazaData');
         })
       });
-    }
+    };
 
     $scope.$on('loadedPlazaData', function () {
       Tree.query({id: $scope.plazaId, method: 'plaza'}, function (data) {
