@@ -1,0 +1,153 @@
+<div class="row-fluid">
+  <div class="span6">
+    <h1>Search For POGs</h1>
+    <small>
+      <p>Search for Putative Orthologous Groups (POGs) containing genes in Arabidopsis thaliana, Zea mays, Oryza sativa, and/or Populus trichocarpa that meet the following criteria:</p>
+    </small>
+<div class="row-fluid">
+<div class="clearfix"></div>
+<form class="form">
+  
+  <div class="control-group">
+    <label class="control-label" for="orthology"><b>Orthology Prediction Method</b></label>
+    <small><p>*Default orthology prediction method</small>
+    <div class="controls">
+      <div id="orthology" class="btn-group">
+        
+        <button type="button" class="btn btn-small btn-success" ng-model="pogSearch.pogMethod" btn-radio="'groups'">Gramene*</button>
+        <button type="button" class="btn btn-small btn-success" ng-model="pogSearch.pogMethod" btn-radio="'plaza_groups'">Plaza 2.5</button>
+      </div>
+    </div>
+  </div>
+    
+  <div class="control-group">
+    <label class="control-label" for="gene"><b>Gene Search</b></label>
+    <div class="controls">
+      <input class="input-xxlarge" id="gene" ng-model="pogSearch.genesearch" placeholder="Search By Gene ID e.g. GRMZM2G055768" type="text"/>
+    </div>
+  </div>
+  <div class="control-group">
+    <label for="domain" class="control-label"><b>Full Text Search</b></label>
+    <small><p>Keywords from Gene Descriptions, Domain names, Interpro IDs. <a tooltip-html-unsafe="{{booleanGuidelines}}">Guidelines for Boolean Searches</a></small>
+    <div class="controls">    
+      <input id="domain" class="input-xxlarge" ng-model="pogSearch.domain" placeholder="Search By Keyword e.g. &#039;ppr&#039; or by InterproID e.g. IPR001117" type="text" />
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="pog"><b>Go To POG ID</b></label>
+    <div class="controls">
+      <input id="pog" class="input-xxlarge" ng-model="pogSearch.pog" placeholder="Search By POG ID i.e. 5562" type="text" />
+    </div>
+  </div>
+  <h5>Limit Search By Predicted or Established Intracellular Location of Gene Product</h5>
+  <small><p><i>All Intracellular Filters Are AND boolean searches.</i></p></small>
+    <p>Filter this search using</p>
+    <table class="pog-search">
+      <tr>
+        <td>
+          <label class="checkbox">
+            <input type="checkbox" ng-model="pogSearch.predotar" ng-true-value="predotar" /><b>Predotar</b>
+          </label>
+        </td>
+        <td>
+          <label class="checkbox">
+            <input type="checkbox" ng-model="pogSearch.targetp" ng-true-value="targetp" /><b>TargetP</b>
+          </label>
+        </td>
+        <td><label>prediction to</label></td>
+      </tr>
+    </table>
+    <table class="pog-search">
+      <tr>
+        <td>
+          <label class="radio">
+            <input type="radio" class="input-large" ng-model="pogSearch.subCellTarget" value="mitochondria" />Mitochondrion
+          </label>
+        </td>
+        <td>
+          <label class="radio">
+            <input type="radio" ng-model="pogSearch.subCellTarget" value="plastid" />Chloroplast
+          </label>
+        </td>
+        <td>
+          <label class="radio">
+            <input type="radio" ng-model="pogSearch.subCellTarget" value="endoret" />Endoplasmid Reticulum
+          </label>
+        </td>
+      </tr>
+    </table>
+  <table class="pog-search">
+    <tr>
+      <td>
+        <label class="checkbox">
+          <input type="checkbox" ng-model="pogSearch.nucpred" ng-true-value="nucpred" /><b>Nucpred</b></label>
+      </td>
+      <td>
+        <label>
+        prediction to the <b>nucleus</b>.
+      </label>
+      </td>
+    </tr>
+  </table>
+    <table class="pog-search">
+     <tr>
+       <td><p>Filter this search using experimental data from</p>
+       </td>
+     </tr>
+     <tr>
+       <td>
+         <label class="checkbox" >
+           <input type="checkbox" ng-model="pogSearch.ppdb" ng-true-value="ppdb" /><p tooltip-placement="top" tooltip="Plant Proteome Database (Cornell)"><b>PPDB</b> validating location in</p>
+         </label>
+       </td>
+     </tr>
+   </table> 
+   <table class="pog-search">
+    <tr>
+      <td>
+        <label class="radio">
+          <input type="radio" ng-model="pogSearch.ppdbTarget" value="mitochondria" />Mitochondrion
+        </label>
+      </td>
+      <td>
+        <label class="radio">
+          <input type="radio" ng-model="pogSearch.ppdbTarget" value="plastid" />Chloroplast
+        </label>
+      </td>
+      <td>
+        <label class="radio">
+          <input type="radio" ng-model="pogSearch.ppdbTarget" value="nucleus" />Nucleus
+        </label>
+      </td>      
+      <td>
+        <label class="radio">
+          <input type="radio" ng-model="pogSearch.ppdbTarget" value="ER" />Endoplasmid Reticulum
+        </label>
+      </td>
+    </tr>
+  </table>
+
+  <br />
+  <button ng-click="pogSearchSubmit()" class="form_by_pog btn btn-primary">Search</button>
+  <button type="button" class="btn btn-mini btn-danger" ng-click="reset()">Reset Filters</button>
+</form>
+</div>
+</div>
+</div>
+
+<div class="row-fluid">
+  <div class="span12">
+<h3>Description</h3>
+<br>
+<p>
+POGs 2.0, is a relational database designed to facilitate cross-species inferences about gene functions and gene models in plants.  The database integrates data from rice (<i>Orza sativa</i>), maize (<i>Zea mays</i>), <i>Arabidopsis thaliana</i>, and Poplar (<i>Populus trichocarpa</i>) by placing the complete predicted proteomes into "putative orthologous groups" (POGs). POGs were imported from Gramene’s <a href="http://www.gramene.org/info/docs/compara/homology_method.html">ENSEMBL orthology prediction output</a> and from <a href="http://bioinformatics.psb.ugent.be/plaza/" target="_blank">Plaza 2.5</a> (<a href="http://www.plantphysiol.org/content/158/2/590.full" target="_blank">Van Bel et al, Plant Phys 2012</a>) (OrthoMCL-calculated orthologous groups). We welcome suggestions for additional orthology prediction algorithms to incorporate into future versions of this resource. 
+</p>
+<p>
+Each POG entry includes putative orthologs annotated with gene descriptions imported from species-specific databases, graphical representations of conserved protein domains, phylogenetic trees showing closely-related proteins, intracellular targeting predictions and verified targeting data from <a tooltip="Plant Proteome Database (Cornell)" href="http://ppdb.tc.cornell.edu/">PPDB</a>. The database can be queried by Interpro domain keyword or ID, genemodel or transcript accessions, known or predicted intracellular location, or any combination of the above. <a href="http://www.cbs.dtu.dk/services/TargetP/">TargetP</a> v1.03, <a href="http://urgi.versailles.inra.fr/predotar/predotar.html">Predotar</a> 1.1. and <a href="http://www.sbc.su.se/~maccallr/nucpred/">NucPred</a> v1.1 were used to predict intracellular locations. 
+</p>
+<p>Development of this database was funded by grant IOS- 0922560 from the National Science Foundation.</p>
+
+<p>If you use this resource in published work, please cite: M Tomcal, N Stiffler, and A Barkan (2013) <a href="http://dx.plos.org/10.1371/journal.pone.0082569">POGs2: A Web Portal to Facilitate Cross-Species Inferences About Protein Architecture and Function in Plants.</a> PLOS One, e82569.</p>
+  </div>
+</div>
+

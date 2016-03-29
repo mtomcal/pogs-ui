@@ -1,0 +1,98 @@
+<div class="row-fluid" ng-controller="BlastCtrl">
+  <div class="span4">
+  <form class="form">
+    <div class="control-group">
+      <label class="control-label" for="method">Method</label>
+      <div class="controls">
+        <div id="method" class="btn-group">
+          <button type="button" class="btn btn-small btn-primary" ng-model="blast.method" btn-radio="'blastp'">BlastP (aa against aa db)</button>
+          <button type="button" class="btn btn-small btn-primary"  ng-model="blast.method" btn-radio="'blastx'">BlastX (dna against aa db)</button>
+        </div>
+      </div>
+    </div>
+<div class="control-group">
+  <label class="control-label" for="seq">{{placeholder}}</label>
+  <div class="controls">
+    <textarea id="seq" name="seq" class="input-block-level" rows="10" ng-model="blast.seq"></textarea>
+  </div>
+</div>
+<button class="btn" ng-click="isCollapsed = !isCollapsed">Advanced Options</button>
+<hr>
+<div collapse="isCollapsed">
+  <div class="well well-large">
+    <div class="control-group">
+      <label class="control-label" for="matrix">Matrix</label>
+      <div class="controls">
+        <div id="matrix" class="btn-group">
+          <button type="button" class="btn btn-small btn-primary" ng-model="blast.matrix" btn-radio="'PAM30'">PAM30</button>
+          <button type="button" class="btn btn-small btn-primary" ng-model="blast.matrix" btn-radio="'PAM70'">PAM70</button>
+          <button type="button" class="btn btn-small btn-primary" ng-model="blast.matrix" btn-radio="'BLOSUM80'">BLOSUM80</button>
+          <button type="button" class="btn btn-small btn-primary" ng-model="blast.matrix" btn-radio="'BLOSUM62'">BLOSUM62</button>
+          <button type="button" class="btn btn-small btn-primary" ng-model="blast.matrix" btn-radio="'BLOSUM45'">BLOSUM45</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="wordSize">Word Size</label>
+      <div class="controls">
+        <input ng-model="blast.wordSize" type="text" id="wordSize" name="wordSize" placeholder="0">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="openGap">Cost to Open A Gap</label>
+      <div class="controls">
+        <input type="text" id="openGap" ng-model="blast.openGap" name="openGap" placeholder="-1">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="extendGap">Cost to Extend A Gap</label>
+      <div class="controls">
+        <input type="text" id="extendGap" name="extendGap" placeholder="-1" ng-model="blast.extendGap">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="threshold">Threshold for extending hits</label>
+      <div class="controls">
+        <input type="text" id="threshold" name="threshold" placeholder="0" ng-model="blast.threshold">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="gapAlign">Perform gapped alignment</label>
+      <div class="controls">
+        <input type="checkbox" id="gapAlign" name="gapAlign" ng-model="blast.gapAlign"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="dropGap">X dropoff value for gapped alignment (in bits)</label>
+      <div class="controls">
+        <input type="text" id="dropGap" name="dropGap" placeholder="0" ng-model="blast.dropGap">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="dropUngap">X dropoff value for ungapped extensions (in bits)</label>
+      <div class="controls">
+        <input type="text" id="dropUngap" name="dropUngap" placeholder="0.0" ng-model="blast.dropUngap">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label" for="EValue">Expect Value</label>
+  <div class="controls">
+    <input type="text" id="EValue" name="EValue" placeholder="1e-10" ng-model="blast.EValue">
+  </div>
+  <br />
+  <div class="controls">
+    <button ng-click="blastSearch()" class="btn btn-primary">Search</button>
+  </div>
+</div>
+</form>
+</div>
+<div class="span8">
+  <center><img ng-show="loader" width="25" height="25" src="images/ajax-loader.gif" /></center>
+  <div ng-show="showResults" compile="results"></div>
+</div>
+
+</div>
